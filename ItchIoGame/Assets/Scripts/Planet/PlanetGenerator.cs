@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Planet : MonoBehaviour
+public class PlanetGenerator : MonoBehaviour
 {
     [Range(2,256)]
     public int resolution = 10;
@@ -22,7 +22,7 @@ public class Planet : MonoBehaviour
         GeneratePlanet();
     }
 
-    public Planet() {
+    public PlanetGenerator() {
         noiseSettings = new NoiseSettings();
         noiseSettings.roughness = 0.02f;
         noiseSettings.center = new Vector3(0, 0, 0);

@@ -36,4 +36,4 @@ Material:
     - Vector1_ED1CFC72: 1.4
     m_Colors:
     - Color_7F8D3DBC: {r: 0.2355375, g: 0.7407953, b: 0.745283, a: 0}
-    - _elevationMinMax: {r: 5, g: 5.516032, b: 0, a: 0}
+    - _elevationMinMax: {r: 5, g: 5.503896, b: 0, a: 0}

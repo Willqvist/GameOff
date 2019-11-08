@@ -12,9 +12,4 @@ public class Planet : MonoBehaviour
         body.rotation = Quaternion.FromToRotation(body.up, dir) * body.rotation;
         body.position = (dir * radius) + this.transform.position;
     }
-
-    public void Build(PlanetEntity entity)
-    {
-
-    }
 }

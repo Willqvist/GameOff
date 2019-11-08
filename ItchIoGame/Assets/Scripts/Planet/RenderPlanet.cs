@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RenderPlanet : MonoBehaviour
 {
-    public Planet planet;
+    public PlanetGenerator planet;
     // Start is called before the first frame update
     void Start()
     {

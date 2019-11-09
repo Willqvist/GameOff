@@ -33,7 +33,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_ED1CFC72: 1.4
+    - Vector1_ED1CFC72: 4.44
     m_Colors:
-    - Color_7F8D3DBC: {r: 0.2355375, g: 0.7407953, b: 0.745283, a: 0}
-    - _elevationMinMax: {r: 5, g: 5.503896, b: 0, a: 0}
+    - Color_7F8D3DBC: {r: 0.48159194, g: 0.509434, b: 0.43494126, a: 0}
+    - _elevationMinMax: {r: 5, g: 5.515749, b: 0, a: 0}

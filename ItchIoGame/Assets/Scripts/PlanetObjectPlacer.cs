@@ -31,6 +31,7 @@ public class PlanetObjectPlacer : MonoBehaviour
             if (hit.transform.gameObject.Equals(this.gameObject))
             {
                 this.holding.transform.position = hit.point;
+                Debug.Log(hit.point);
                 this.holding.RotateTowardsPlanet(this.instance);
                 this.radiusSphereInstance.transform.position = this.holding.transform.position;
 

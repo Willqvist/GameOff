@@ -8,20 +8,20 @@ public class PlanetCamera : MonoBehaviour
     [SerializeField] private float minScroll;
     [SerializeField] private float maxScroll;
     [SerializeField] private float scrollSpeed;
-
+    [SerializeField] private float roationSpeed;
+    private Quaternion crs;
     //local shit
     private float zoom;
 
     void Update()
     {
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButton(2))
         {
             float h = Input.GetAxis("Mouse X");
             float v = Input.GetAxis("Mouse Y");
-
-            this.pivot.transform.rotation *= Quaternion.AngleAxis(100 * Time.deltaTime, new Vector3(-v, h, 0));
+            Debug.Log(Quaternion.AngleAxis(roationSpeed * Time.deltaTime, new Vector3(-v, h, 0)));
+            this.pivot.transform.rotation *= Quaternion.AngleAxis(roationSpeed * Time.deltaTime, new Vector3(-v, h, 0));
         }
-
         this.zoom += Input.GetAxis("Mouse ScrollWheel") * 80f;
         this.zoom = Mathf.Lerp(this.zoom, 0, 0.05f);
 

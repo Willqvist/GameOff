@@ -24,7 +24,6 @@ public class PlanetCamera : MonoBehaviour
         {
             float h = Input.GetAxis("Mouse X");
             float v = Input.GetAxis("Mouse Y");
-            Debug.Log(Quaternion.AngleAxis(rotationSpeed * Time.deltaTime, new Vector3(-v, h, 0)));
             this.pivot.transform.rotation *= Quaternion.AngleAxis(rotationSpeed *delta* Time.deltaTime, new Vector3(-v, h, 0));
         }
         if (EventSystem.current.IsPointerOverGameObject()) return;

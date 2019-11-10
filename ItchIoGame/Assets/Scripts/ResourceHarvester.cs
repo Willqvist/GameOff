@@ -8,7 +8,7 @@ public class ResourceHarvester : PlanetEntity
 
     private float tick;
 
-    public void Start()
+    public override void Start()
     {
         base.Start();
         this.resourceEntities = new List<ResourceEntity>();
@@ -42,6 +42,11 @@ public class ResourceHarvester : PlanetEntity
     public override void PlaceOnPlanet(Planet planet,Vector3 point)
     {
         base.PlaceOnPlanet(planet,point);
+
+        if(planet == null)
+        {
+            return;
+        }
 
         RaycastHit[] hits = Physics.SphereCastAll(new Ray(this.transform.position, this.transform.forward), 1);
 

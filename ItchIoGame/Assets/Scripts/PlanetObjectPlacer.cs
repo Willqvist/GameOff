@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlanetObjectPlacer : IClickHandler
 {
@@ -32,14 +33,23 @@ public class PlanetObjectPlacer : IClickHandler
                 this.holding.RotateTowardsPlanet(this.instance);
                 Vector3 point = hit.point + this.holding.transform.up * holdingEntity.colliderHeight * 0.5f;
                 this.holding.transform.position = point;
-                this.radiusSphereInstance.transform.position = this.holding.transform.position;
+                //this.radiusSphereInstance.transform.position = this.holding.transform.position;
 
                 if (Input.GetMouseButton(0))
                 {
                     this.holding.PlaceOnPlanet(instance, point);
                     this.holding = null;
-                    Destroy(this.radiusSphereInstance);
+                    //Destroy(this.radiusSphereInstance);
                 }
+            }
+        }
+        else
+        {
+            this.holding.transform.position = Vector3.zero;
+            if(Input.GetMouseButton(0))
+            {
+                Destroy(this.holding);
+                this.holding = null;
             }
         }
     }
@@ -53,14 +63,21 @@ public class PlanetObjectPlacer : IClickHandler
         this.holding.transform.rotation = Quaternion.identity;
         this.holding.transform.SetParent(this.transform);
 
+        /*
         this.radiusSphereInstance = Instantiate(this.radiusSpherePrefab);
         this.radiusSphereInstance.transform.position = Vector3.zero;
         this.radiusSphereInstance.transform.rotation = Quaternion.identity;
         this.radiusSphereInstance.transform.SetParent(this.transform);
+        */
     }
 
     public override void OnClick(ButtonController button)
     {
+        if(this.holding != null)
+        {
+            Destroy(this.holding);
+        }
+
         if (button.getName().Equals("BuyTree")) {
             HoldPlanetEntity(PrefabData.GetEntity("Tree"));
         }

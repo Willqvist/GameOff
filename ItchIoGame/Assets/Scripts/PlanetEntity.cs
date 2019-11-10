@@ -7,7 +7,7 @@ public class PlanetEntity : MonoBehaviour {
     public Planet planet;
     public string entityName;
     public float colliderHeight = 2f;
-    public void Start()
+    public virtual void Start()
     {
         /*
         CapsuleCollider cap = this.GetComponent<CapsuleCollider>();
@@ -19,6 +19,7 @@ public class PlanetEntity : MonoBehaviour {
         }
         */
 
+        this.PlaceOnPlanet(this.planet, this.transform.position);
     }
     public virtual void Update()
     {
@@ -35,6 +36,7 @@ public class PlanetEntity : MonoBehaviour {
         this.planet = planet;
         this.transform.position = position;
     }
+
     public float getColliderHeight()
     {
         return this.colliderHeight;

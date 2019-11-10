@@ -52,6 +52,12 @@ public class ButtonController : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     public void OnPointerUp(PointerEventData eventData)
     {
+        if(this.onClick == null)
+        {
+            Debug.Log("On click is null in ButtonController::OnPointerUp");
+            return;
+        }
+
         animator.SetBool("clicking", false);
         onClick.OnClick(this);
     }

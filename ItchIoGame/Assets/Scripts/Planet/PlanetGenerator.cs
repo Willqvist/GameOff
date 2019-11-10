@@ -22,7 +22,9 @@ public class PlanetGenerator : MonoBehaviour
     {
         //GeneratePlanet();
     }
-
+    public NoiseSettings getNoiseSettings() {
+        return noiseSettings;
+    }
     private void Start()
     {
         shapeGenerator = new ShapeGenerator(noiseSettings, shapeSettings);

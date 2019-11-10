@@ -13,7 +13,7 @@ public class ShapeGenerator
         this.settings = settings;
         noiseFilter = new NoiseFilter();
         elevationMinMax = new MinMax();
-        this.noiseSettings = new NoiseSettings();
+        this.noiseSettings = noiseSettings;
     }
 
     public Vector3 CalculatePointOnPlanet(Vector3 pointOnUnitSphere) {

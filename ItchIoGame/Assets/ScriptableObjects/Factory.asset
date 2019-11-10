@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f18c31b6be06506468bd835dd5c591bb, type: 3}
+  m_Name: Factory
+  m_EditorClassIdentifier: 
+  prefab: {fileID: -927199367670048503, guid: 9dd0b6e9956aaf74a85ec8c309e0e4c2, type: 3}
+  name: Factory
+  buyButtonIdentifier: BuyFactory
+  infoButtonIdentifier: InfoFactory
+  electricityResource: {fileID: 11400000, guid: 42a8a7d2dba10b34695a182cba27b7b9,
+    type: 2}
+  moneyResource: {fileID: 11400000, guid: 6b2ff4b101bb7614bada5afced4cdfd5, type: 2}
+  populationResource: {fileID: 11400000, guid: f0731770655293f42a148fd9c7a1b1e3, type: 2}

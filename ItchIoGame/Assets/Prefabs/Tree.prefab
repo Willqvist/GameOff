@@ -77,6 +77,8 @@ MonoBehaviour:
   planet: {fileID: 0}
   entityName: Tree
   colliderHeight: -0.1
+  electricityResource: {fileID: 11400000, guid: e4871250fdbee8b45a9c075d5732b93c,
+    type: 2}
 --- !u!1001 &2821135336532042530
 PrefabInstance:
   m_ObjectHideFlags: 0

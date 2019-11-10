@@ -48,7 +48,7 @@ public class PlanetObjectPlacer : IClickHandler
             this.holding.transform.position = Vector3.zero;
             if(Input.GetMouseButton(0))
             {
-                Destroy(this.holding);
+                Destroy(this.holding.gameObject);
                 this.holding = null;
             }
         }
@@ -75,15 +75,24 @@ public class PlanetObjectPlacer : IClickHandler
     {
         if(this.holding != null)
         {
-            Destroy(this.holding);
+            Destroy(this.holding.gameObject);
         }
 
         if (button.getName().Equals("BuyTree")) {
+
             HoldPlanetEntity(PrefabData.GetEntity("Tree"));
         }
         else if (button.getName().Equals("BuyFactory"))
         {
             HoldPlanetEntity(PrefabData.GetEntity("Factory"));
+        }
+        else if(button.getName().Equals("BuyPowerPlant"))
+        {
+            HoldPlanetEntity(PrefabData.GetEntity("PowerPlant"));
+        }
+        else if (button.getName().Equals("BuyHouse"))
+        {
+            HoldPlanetEntity(PrefabData.GetEntity("House"));
         }
     }
 }

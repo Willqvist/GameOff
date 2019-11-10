@@ -10,6 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b44d19b24e0fca4418e5a4702ed4e1ee, type: 3}
-  m_Name: Iron
+  m_Name: HousePopulation
   m_EditorClassIdentifier: 
-  resourceType: 1
+  resourceType: 4
+  value: 10

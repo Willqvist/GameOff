@@ -7,6 +7,9 @@ public class PlanetEntity : MonoBehaviour {
     public Planet planet;
     public string entityName;
     public float colliderHeight = 2f;
+    public Resource electricityResource;
+    public Resource populationResource;
+
     public virtual void Start()
     {
         /*
@@ -18,8 +21,6 @@ public class PlanetEntity : MonoBehaviour {
             return;
         }
         */
-
-        this.PlaceOnPlanet(this.planet, this.transform.position);
     }
     public virtual void Update()
     {
@@ -31,10 +32,20 @@ public class PlanetEntity : MonoBehaviour {
         //this.planet.Place(this.transform);
     }
 
+    private void OnDestroy()
+    {
+        Planet.Current.electricity -= this.electricityResource.value;
+        UiManager.Instance.DecreaseResource(this.electricityResource, this.electricityResource.value);
+    }
+
     public virtual void PlaceOnPlanet(Planet planet,Vector3 position)
     {
         this.planet = planet;
         this.transform.position = position;
+
+        Planet.Current.electricity += this.electricityResource.value;
+        Planet.Current.ActiveWorkers += -this.populationResource.value;
+        UiManager.Instance.IncreaseResource(this.electricityResource, this.electricityResource.value);
     }
 
     public float getColliderHeight()

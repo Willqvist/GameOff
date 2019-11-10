@@ -9,30 +9,18 @@ using UnityEngine.Serialization;
 
 public class ButtonController : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler
 {
+    [SerializeField] protected string identifier;
+    [SerializeField] protected Animator animator;
+    [SerializeField] protected IClickHandler onClick;
 
-    [SerializeField] private string text;
-    [SerializeField] private string name;
-    [SerializeField] private Animator animator;
-    [SerializeField] private IClickHandler onClick;
-    private TextMeshProUGUI textMesh;
-    // Start is called before the first frame update
-    private void OnValidate()
+    private void Start()
     {
-        if(this.textMesh == null)
-            this.textMesh = this.GetComponentInChildren<TextMeshProUGUI>();
-        this.textMesh.text = text;
         this.animator = this.GetComponent<Animator>();
     }
-    void Start()
-    {
-        this.textMesh = this.GetComponentInChildren<TextMeshProUGUI>();
-        this.textMesh.text = text;
-    }
 
-    // Update is called once per frame
-    void Update()
+    public void SetIdentifier(string id)
     {
-
+        this.identifier = id;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -50,7 +38,7 @@ public class ButtonController : MonoBehaviour, IPointerEnterHandler, IPointerExi
         animator.SetBool("clicking", true);
     }
 
-    public void OnPointerUp(PointerEventData eventData)
+    public virtual void OnPointerUp(PointerEventData eventData)
     {
         if(this.onClick == null)
         {
@@ -63,6 +51,6 @@ public class ButtonController : MonoBehaviour, IPointerEnterHandler, IPointerExi
     }
 
     public string getName() {
-        return name;
+        return identifier;
     }
 }

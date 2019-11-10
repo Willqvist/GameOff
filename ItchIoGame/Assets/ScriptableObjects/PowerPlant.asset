@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f18c31b6be06506468bd835dd5c591bb, type: 3}
+  m_Name: PowerPlant
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 4222263227364293168, guid: 8d44acf119d565c4183e83f1e5fd1fa6, type: 3}
+  name: Power Plant
+  buyButtonIdentifier: BuyPowerPlant
+  infoButtonIdentifier: InfoPowerPlant
+  electricityResource: {fileID: 11400000, guid: 74a33a729f290d74686a806468e76be1,
+    type: 2}
+  moneyResource: {fileID: 11400000, guid: dd28132bca5551d45b3e0c37575a2259, type: 2}
+  populationResource: {fileID: 11400000, guid: 634a2856b5a272746a08a78e805e4743, type: 2}

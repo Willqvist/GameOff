@@ -6,10 +6,14 @@ using UnityEngine;
 public class Resource : ScriptableObject
 {
     public ResourceType resourceType;
+    public int value;
 }
 
 public enum ResourceType
 {
     WOOD,
-    IRON
+    IRON,
+    ELECTRICITY,
+    MONEY,
+    POPULATION
 }

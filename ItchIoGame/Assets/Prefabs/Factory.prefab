@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2989757915809511559}
   - component: {fileID: 2989757915809511552}
   - component: {fileID: 2989757915809511557}
+  - component: {fileID: -2396485483897291886}
   m_Layer: 8
   m_Name: Factory
   m_TagString: Untagged
@@ -61,6 +62,22 @@ MonoBehaviour:
   planet: {fileID: 0}
   entityName: Factory
   colliderHeight: 1
+  electricityResource: {fileID: 11400000, guid: 42a8a7d2dba10b34695a182cba27b7b9,
+    type: 2}
+  populationResource: {fileID: 11400000, guid: f0731770655293f42a148fd9c7a1b1e3, type: 2}
+--- !u!114 &-2396485483897291886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2989757915809511555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 605d78e755c1b8b44832c7f639c62b9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pollutionPerSecond: 0.1
 --- !u!1001 &4740129527440998221
 PrefabInstance:
   m_ObjectHideFlags: 0

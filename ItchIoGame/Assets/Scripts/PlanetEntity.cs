@@ -22,6 +22,7 @@ public class PlanetEntity : MonoBehaviour {
         }
         */
 
+        this.PlaceOnPlanet(this.planet, this.transform.position);
     }
 
     public void SetColor(Color color)
@@ -46,6 +47,7 @@ public class PlanetEntity : MonoBehaviour {
         this.planet = planet;
         this.transform.position = position;
     }
+
     public float getColliderHeight()
     {
         return this.colliderHeight;

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlanetObjectPlacer : IClickHandler
 {
@@ -64,8 +65,17 @@ public class PlanetObjectPlacer : IClickHandler
                 {
                     this.holding.PlaceOnPlanet(instance, point);
                     this.holding = null;
-                    Destroy(this.radiusSphereInstance);
+                    //Destroy(this.radiusSphereInstance);
                 }
+            }
+        }
+        else
+        {
+            this.holding.transform.position = Vector3.zero;
+            if(Input.GetMouseButton(0))
+            {
+                Destroy(this.holding);
+                this.holding = null;
             }
         }
     }
@@ -89,6 +99,11 @@ public class PlanetObjectPlacer : IClickHandler
 
     public override void OnClick(ButtonController button)
     {
+        if(this.holding != null)
+        {
+            Destroy(this.holding);
+        }
+
         if (button.getName().Equals("BuyTree")) {
             HoldPlanetEntity(PrefabData.GetEntity("Tree"));
         }

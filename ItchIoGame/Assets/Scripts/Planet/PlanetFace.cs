@@ -11,9 +11,10 @@ public class PlanetFace
     private Vector3 localUp;
     private Vector3 axisA;
     private Vector3 axisB;
+    private ResourceGenerator rg;
     // Start is called before the first frame update
 
-    public PlanetFace(ShapeGenerator shapeGenerator, Mesh mesh,MeshCollider collider, int resolution, Vector3 localUp) {
+    public PlanetFace(ResourceGenerator rg, ShapeGenerator shapeGenerator, Mesh mesh,MeshCollider collider, int resolution, Vector3 localUp) {
         this.shapeGenerator = shapeGenerator;
         this.mesh = mesh;
         this.resolution = resolution;
@@ -21,6 +22,7 @@ public class PlanetFace
         this.axisA = new Vector3(localUp.y, localUp.z, localUp.x);
         this.axisB = Vector3.Cross(localUp, axisA);
         this.collider = collider;
+        this.rg = rg;
     }
 
     public void ConstructMesh() {
@@ -36,7 +38,16 @@ public class PlanetFace
                 Vector2 percent = new Vector2(x, y) / (resolution - 1);
                 Vector3 pointOnUnitCube = localUp + (percent.x - .5f) * 2 * axisA + (percent.y - .5f) * 2 * axisB;
                 Vector3 pointOnUnitSphere = pointOnUnitCube.normalized;
-                vertices[i] = shapeGenerator.CalculatePointOnPlanet(pointOnUnitSphere);
+                float noise = shapeGenerator.getNoise(pointOnUnitSphere);
+                vertices[i] = shapeGenerator.CalculatePointOnPlanet(noise,pointOnUnitSphere);
+
+                if (rg.ShouldPlaceTree(vertices[i]) && noise > 0.001f && x % 3 == 0 && y % 3 == 0)
+                {
+                    rg.PlaceTree(vertices[i]);
+                }
+                else if(rg.ShouldPlaceMine(vertices[i]) && noise > 0.001f && x % 7 == 0 && y % 7 == 0) {
+                    rg.PlaceMine(vertices[i]);
+                }
 
                 if (x != resolution - 1 && y != resolution - 1) {
                     triangles[triIndex] = i;

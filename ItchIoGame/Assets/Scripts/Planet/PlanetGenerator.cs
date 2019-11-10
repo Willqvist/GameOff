@@ -11,11 +11,13 @@ public class PlanetGenerator : MonoBehaviour
     public ColorSettings colorSettings;
     public ShapeGenerator shapeGenerator;
     public NoiseSettings noiseSettings;
+    public PlanetEntity treeType, mineType; 
     [SerializeField, HideInInspector]
     private MeshFilter[] meshFilters;
     private MeshCollider[] meshColliders;
     private PlanetFace[] planetFaces;
 
+    private ResourceGenerator resourceGenerator;
     private ColorGenerator colorGenerator;
 
     private void OnValidate()
@@ -31,7 +33,7 @@ public class PlanetGenerator : MonoBehaviour
         colorGenerator = new ColorGenerator(colorSettings);
         meshFilters = new MeshFilter[6];
         meshColliders = new MeshCollider[6];
-
+        resourceGenerator = new ResourceGenerator(this.GetComponent<Planet>(), mineType, treeType, noiseSettings);
         planetFaces = new PlanetFace[6];
         GeneratePlanet();
     }
@@ -69,6 +71,7 @@ public class PlanetGenerator : MonoBehaviour
             meshColliders[i] = meshObj.AddComponent<MeshCollider>();
             meshFilters[i].GetComponent<MeshRenderer>().sharedMaterial = colorSettings.planetMaterial;
             planetFaces[i] = new PlanetFace(
+                resourceGenerator,
                 shapeGenerator,
                 meshFilters[i].sharedMesh, 
                 meshColliders[i],

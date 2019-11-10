@@ -7,11 +7,10 @@ public class PlanetEntity : MonoBehaviour {
     public Planet planet;
     public string entityName;
     public float colliderHeight = 2f;
-    protected MaterialPropertyBlock prop;
-    public void Start()
+    public float sphereRadius = 1;
+    private int collidingEntities = 0;
+    public virtual void Start()
     {
-        this.prop = new MaterialPropertyBlock();
-        Debug.Log("initialisaxe: " + this.prop + " | " + this);
         /*
         CapsuleCollider cap = this.GetComponent<CapsuleCollider>();
         if (cap != null)
@@ -27,9 +26,8 @@ public class PlanetEntity : MonoBehaviour {
 
     public void SetColor(Color color)
     {
-        Debug.Log(this.prop + " | " + color + " | " + this);
-        this.prop.SetColor("_BaseColor", color);
-        this.GetComponent<MeshRenderer>().SetPropertyBlock(this.prop);
+        //this.prop.SetColor("_BaseColor", color);
+        //this.GetComponent<MeshRenderer>().SetPropertyBlock(this.prop);
     }
 
     public virtual void Update()
@@ -66,5 +64,24 @@ public class PlanetEntity : MonoBehaviour {
 
     public string getName() {
         return entityName;
+    }
+    public bool IsCollidingEntity() {
+        return collidingEntities > 0;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log(collision.gameObject.layer);
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Planet Object")) {
+            collidingEntities++;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Planet Object"))
+        {
+            collidingEntities--;
+        }
     }
 }

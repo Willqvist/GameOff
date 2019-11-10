@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 2989757915809511555}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 4.885974, y: 0.15560818, z: -1.050252}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children:
   - {fileID: 338586352489354327}
   m_Father: {fileID: 0}
@@ -60,7 +60,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   planet: {fileID: 0}
   entityName: Factory
-  colliderHeight: 1
+  colliderHeight: 0.0091212
+  sphereRadius: 1.5
 --- !u!1001 &4740129527440998221
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -68,11 +69,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2989757915809511559}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 9dd0b6e9956aaf74a85ec8c309e0e4c2,
-        type: 3}
-      propertyPath: m_Name
-      value: factory_scaled
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 9dd0b6e9956aaf74a85ec8c309e0e4c2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -127,6 +123,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 9dd0b6e9956aaf74a85ec8c309e0e4c2,
+        type: 3}
+      propertyPath: m_Name
+      value: factory_scaled
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9dd0b6e9956aaf74a85ec8c309e0e4c2, type: 3}

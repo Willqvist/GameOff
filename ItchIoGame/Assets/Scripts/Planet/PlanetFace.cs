@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlanetFace
 {
     private Mesh mesh;
+    private MeshCollider collider;
     private int resolution;
     private ShapeGenerator shapeGenerator;
     private Vector3 localUp;
@@ -12,13 +13,14 @@ public class PlanetFace
     private Vector3 axisB;
     // Start is called before the first frame update
 
-    public PlanetFace(ShapeGenerator shapeGenerator, Mesh mesh, int resolution, Vector3 localUp) {
+    public PlanetFace(ShapeGenerator shapeGenerator, Mesh mesh,MeshCollider collider, int resolution, Vector3 localUp) {
         this.shapeGenerator = shapeGenerator;
         this.mesh = mesh;
         this.resolution = resolution;
         this.localUp = localUp;
         this.axisA = new Vector3(localUp.y, localUp.z, localUp.x);
-        this.axisB = Vector3.Cross(localUp, axisA); 
+        this.axisB = Vector3.Cross(localUp, axisA);
+        this.collider = collider;
     }
 
     public void ConstructMesh() {
@@ -55,6 +57,8 @@ public class PlanetFace
         mesh.vertices = vertices;
         mesh.triangles = triangles;
         mesh.RecalculateNormals();
+        collider.sharedMesh = mesh;
+        collider.convex = true;
     }
 
 }

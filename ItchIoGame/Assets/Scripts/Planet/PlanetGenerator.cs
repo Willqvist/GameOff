@@ -13,13 +13,29 @@ public class PlanetGenerator : MonoBehaviour
     public NoiseSettings noiseSettings;
     [SerializeField, HideInInspector]
     private MeshFilter[] meshFilters;
+    private MeshCollider[] meshColliders;
     private PlanetFace[] planetFaces;
 
     private ColorGenerator colorGenerator;
 
     private void OnValidate()
     {
+        //GeneratePlanet();
+    }
+
+    private void Start()
+    {
+        shapeGenerator = new ShapeGenerator(noiseSettings, shapeSettings);
+        colorGenerator = new ColorGenerator(colorSettings);
+        meshFilters = new MeshFilter[6];
+        meshColliders = new MeshCollider[6];
+
+        planetFaces = new PlanetFace[6];
         GeneratePlanet();
+    }
+
+    public ShapeSettings getSettings() {
+        return shapeSettings;
     }
 
     public PlanetGenerator() {
@@ -28,31 +44,34 @@ public class PlanetGenerator : MonoBehaviour
         noiseSettings.center = new Vector3(0, 0, 0);
     }
 
+    public MinMax getMinMax() {
+        return shapeGenerator.elevationMinMax;
+    }
+
     void Initialize() {
-        shapeGenerator = new ShapeGenerator(noiseSettings,shapeSettings);
-        colorGenerator = new ColorGenerator(colorSettings);
-        if (meshFilters == null || meshFilters.Length == 0)
+        foreach (Transform child in this.transform)
         {
-            meshFilters = new MeshFilter[6];
+            GameObject.Destroy(child.gameObject);
         }
-
-        planetFaces = new PlanetFace[6];
-
         Vector3[] directions = {
             Vector3.up,Vector3.down,Vector3.left,Vector3.right,Vector3.forward,Vector3.back
         };
 
         for (int i = 0; i < 6; i++) {
-            if (meshFilters[i] == null)
-            {
-                GameObject meshObj = new GameObject("mesh");
-                meshObj.transform.parent = transform;
-                meshObj.AddComponent<MeshRenderer>().sharedMaterial = new Material(Shader.Find("Standard"));
-                meshFilters[i] = meshObj.AddComponent<MeshFilter>();
-                meshFilters[i].sharedMesh = new Mesh();
-            }
+            GameObject meshObj = new GameObject("mesh-" + directions[i].ToString());
+            meshObj.transform.parent = transform;
+            meshObj.tag = "PlanetSide";
+            meshObj.AddComponent<MeshRenderer>().sharedMaterial = new Material(Shader.Find("Standard"));
+            meshFilters[i] = meshObj.AddComponent<MeshFilter>();
+            meshFilters[i].sharedMesh = new Mesh();
+            meshColliders[i] = meshObj.AddComponent<MeshCollider>();
             meshFilters[i].GetComponent<MeshRenderer>().sharedMaterial = colorSettings.planetMaterial;
-            planetFaces[i] = new PlanetFace(shapeGenerator,meshFilters[i].sharedMesh,resolution, directions[i]);
+            planetFaces[i] = new PlanetFace(
+                shapeGenerator,
+                meshFilters[i].sharedMesh, 
+                meshColliders[i],
+                resolution, 
+                directions[i]);
         }
     }
 

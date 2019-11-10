@@ -10,7 +10,13 @@ public class ResourceHarvester : PlanetEntity
 
     public void Start()
     {
+        base.Start();
         this.resourceEntities = new List<ResourceEntity>();
+        /*
+        BoxCollider box = this.GetComponent<BoxCollider>();
+        this.colliderHeight = box.size.y;
+        Debug.Log("height: " + this.colliderHeight);
+        */
     }
 
     public override void Update()
@@ -33,9 +39,9 @@ public class ResourceHarvester : PlanetEntity
         }
     }
 
-    public override void PlaceOnPlanet(Planet planet)
+    public override void PlaceOnPlanet(Planet planet,Vector3 point)
     {
-        base.PlaceOnPlanet(planet);
+        base.PlaceOnPlanet(planet,point);
 
         RaycastHit[] hits = Physics.SphereCastAll(new Ray(this.transform.position, this.transform.forward), 1);
 

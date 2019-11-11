@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2989757915809511559}
   - component: {fileID: 2989757915809511552}
+  - component: {fileID: 2989757915809511557}
   m_Layer: 8
   m_Name: Factory
   m_TagString: Untagged
@@ -45,6 +46,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.8356085, y: 1.8555235, z: 1}
   m_Center: {x: -0.023810863, y: 0.9232009, z: 0}
+--- !u!114 &2989757915809511557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2989757915809511555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5193117ba6a5af45bad3ce0a9ec2196, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  planet: {fileID: 0}
+  entityName: Factory
+  colliderHeight: 0.0091212
+  sphereRadius: 1.5
 --- !u!1001 &4740129527440998221
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -52,11 +69,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2989757915809511559}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 9dd0b6e9956aaf74a85ec8c309e0e4c2,
-        type: 3}
-      propertyPath: m_Name
-      value: factory_scaled
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 9dd0b6e9956aaf74a85ec8c309e0e4c2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -111,6 +123,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 9dd0b6e9956aaf74a85ec8c309e0e4c2,
+        type: 3}
+      propertyPath: m_Name
+      value: factory_scaled
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9dd0b6e9956aaf74a85ec8c309e0e4c2, type: 3}

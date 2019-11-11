@@ -2,28 +2,47 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlanetEntity : MonoBehaviour 
-{
-    public EntityData entityData;
+public class PlanetEntity : MonoBehaviour {
+
+    public Planet planet;
     public string entityName;
     public float colliderHeight = 2f;
     public float sphereRadius = 1;
     private int collidingEntities = 0;
-    protected Planet planet;
-
     public virtual void Start()
     {
+        /*
+        CapsuleCollider cap = this.GetComponent<CapsuleCollider>();
+        if (cap != null)
+        {
+            this.colliderHeight = cap.height;
+            Debug.Log("height: " + this.colliderHeight);
+            return;
+        }
+        */
+
         this.PlaceOnPlanet(this.planet, this.transform.position);
+    }
+
+    public void SetColor(Color color)
+    {
+        //this.prop.SetColor("_BaseColor", color);
+        //this.GetComponent<MeshRenderer>().SetPropertyBlock(this.prop);
     }
 
     public virtual void Update()
     {
+        if(this.planet == null)
+        {
+            return;
+        }
 
+        //this.planet.Place(this.transform);
     }
-
     public virtual void OnPlace() { }
     public virtual void PlaceOnPlanet(Planet planet,Vector3 position)
     {
+        this.planet = planet;
         this.transform.position = position;
     }
 

@@ -6,15 +6,10 @@ public class Planet : MonoBehaviour
 {
     [SerializeField] private float radius;
     [SerializeField] public float gravity = -12;
-    private List<PlanetEntity> entities;
-
-    public void Start()
+    public void Place(Transform body)
     {
-        this.entities = new List<PlanetEntity>();
-    }
-
-    public void Add(PlanetEntity entity)
-    {
-        this.entities.Add(entity);
+        Vector3 dir = (body.position - this.transform.position).normalized;
+        body.rotation = Quaternion.FromToRotation(body.up, dir) * body.rotation;
+        body.position = (dir * radius) + this.transform.position;
     }
 }

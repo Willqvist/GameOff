@@ -6,11 +6,30 @@ public class Player : MonoBehaviour
 {
     public static Player Instance { get; private set; }
 
-    private float money;
-    private Planet planet;
+    [SerializeField] private List<ResourceData> resources;
 
     public void Start()
     {
         Instance = this;
+    }
+
+    public void AddResource(Resource resource, int amount)
+    {
+        Debug.Log("Resource: " + resource);
+        for(int i = 0; i < resources.Count; i++)
+        {
+            if (resources[i].resource.resourceType == resource.resourceType)
+            {
+                resources[i] = new ResourceData
+                {
+                    resource = resources[i].resource,
+                    amount = resources[i].amount + amount
+                };
+
+                break;
+            }
+        }
+
+        UiManager.Instance.UpdateResource(resource, amount);
     }
 }

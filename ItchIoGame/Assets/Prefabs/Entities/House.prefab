@@ -106,5 +106,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entityData: {fileID: 11400000, guid: 35d5aaa78bbf0ae4ba6af5ef4c933e92, type: 2}
-  colliderHeight: -0.1
-  sphereRadius: 0.8
+  colliderHeight: 0
+  sphereRadius: 1

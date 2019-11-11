@@ -62,7 +62,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entityData: {fileID: 11400000, guid: c15defa5e72e2c849b02fc64584fe78e, type: 2}
-  colliderHeight: 2
+  colliderHeight: 0
   sphereRadius: 1
 --- !u!1 &3099589631975894477
 GameObject:

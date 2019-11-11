@@ -25,6 +25,7 @@ public class PlanetObjectPlacer : IClickHandler
     
     private void DestroyHolding()
     {
+        property.SetColor("_color", onWaterColor);
         Destroy(this.holding.gameObject);
         Destroy(this.radiusSphereInstance);
         this.holding = null;
@@ -48,10 +49,11 @@ public class PlanetObjectPlacer : IClickHandler
             {
                 this.holding.RotateTowardsPlanet(this.instance);
                 this.radiusSphereInstance.transform.rotation = this.holding.transform.rotation;
-                Vector3 point = hit.point + this.holding.transform.up * holding.colliderHeight * 0.5f* holding.transform.localScale.y;
+                Vector3 point = hit.point + this.holding.transform.up * holding.colliderHeight * 0.5f;
                 float min = planetGenerator.getMinMax().Min;
                 float max = planetGenerator.getMinMax().Max;
                 float waterRange = min + 5 / 256f;
+                Debug.Log(Vector3.Distance(point, this.transform.position) + " | " + waterRange);
                 if (Vector3.Distance(point, this.transform.position) <= waterRange || sphereCollision.isColliding())
                 {
                     if (!onWater)

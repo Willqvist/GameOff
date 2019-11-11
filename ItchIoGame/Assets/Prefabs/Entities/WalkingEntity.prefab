@@ -405,9 +405,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a360fbc54ff8ac41a107d73ff17653c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  planet: {fileID: 0}
-  entityName: LivingEntity
+  entityData: {fileID: 11400000, guid: 5f3def55cfb42874384632a4f7920104, type: 2}
   colliderHeight: 2
+  sphereRadius: 1
   rigidBody: {fileID: 4450392994218317247}
   moveSpeed: 5
 --- !u!54 &4450392994218317247

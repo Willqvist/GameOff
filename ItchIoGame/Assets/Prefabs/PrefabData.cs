@@ -1,23 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class PrefabData : MonoBehaviour
 {
-    // Start is called before the first frame update
-    [SerializeField]
-    public PlanetEntity[] entities;
-    private static Dictionary<string, PlanetEntity> planetEntities = new Dictionary<string, PlanetEntity>();
+    public static PrefabData Instance { get; private set; }
 
-    private void Start()
+    [SerializeField] private PlanetEntity[] entities;
+
+    private void Awake()
     {
-        foreach (PlanetEntity entity in entities) {
-            planetEntities[entity.getName()] = entity;
-        }
+        Instance = this;
     }
 
-    public static PlanetEntity GetEntity(string name)
+    public PlanetEntity GetEntity(EntityName name)
     {
-        return planetEntities[name];
+        return this.entities.Where(x => x.entityData.entityName == name).FirstOrDefault();
     }
 }

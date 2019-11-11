@@ -38,7 +38,7 @@ public class PlanetObjectPlacer : IClickHandler
 
         RaycastHit hit;
         Ray ray = this.mainCamera.ScreenPointToRay(Input.mousePosition);
-        if (Input.GetKeyUp(KeyCode.Escape) || Input.GetMouseButton(1)) {
+        if (Input.GetKeyUp(KeyCode.Escape)) {
             DestroyHolding();
             return;
         }
@@ -49,7 +49,6 @@ public class PlanetObjectPlacer : IClickHandler
                 this.holding.RotateTowardsPlanet(this.instance);
                 this.radiusSphereInstance.transform.rotation = this.holding.transform.rotation;
                 Vector3 point = hit.point + this.holding.transform.up * holding.colliderHeight * 0.5f* holding.transform.localScale.y;
-                Debug.Log(Vector3.Distance(point, this.transform.position) + " | " + planetGenerator.getSettings().planetRadius);
                 float min = planetGenerator.getMinMax().Min;
                 float max = planetGenerator.getMinMax().Max;
                 float waterRange = min + 5 / 256f;
@@ -114,6 +113,12 @@ public class PlanetObjectPlacer : IClickHandler
         
     }
 
+    public void PlaceObject(EntityName entity)
+    {
+        PlanetEntity e = PrefabData.Instance.GetEntity(entity);
+        HoldPlanetEntity(e);
+    }
+
     public override void OnClick(ButtonController button)
     {
         if(this.holding != null)
@@ -121,7 +126,7 @@ public class PlanetObjectPlacer : IClickHandler
             DestroyHolding();
         }
 
-        if (button.getName().Equals("BuyTree")) {
+        /*if (button.getName().Equals("BuyTree")) {
             HoldPlanetEntity(PrefabData.GetEntity("Tree"));
         }
         else if (button.getName().Equals("BuyFactory"))
@@ -131,6 +136,6 @@ public class PlanetObjectPlacer : IClickHandler
         else if (button.getName().Equals("BuyLivingEntity"))
         {
             HoldPlanetEntity(PrefabData.GetEntity("LivingEntity"));
-        }
+        }*/
     }
 }

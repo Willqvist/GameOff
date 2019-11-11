@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlanetEntity : MonoBehaviour 
 {
     public EntityData entityData;
-    public string entityName;
     public float colliderHeight = 2f;
     public float sphereRadius = 1;
     private int collidingEntities = 0;
@@ -43,16 +42,12 @@ public class PlanetEntity : MonoBehaviour
         return planet != null;
     }
 
-    public string getName() {
-        return entityName;
-    }
     public bool IsCollidingEntity() {
         return collidingEntities > 0;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision.gameObject.layer);
         if (collision.gameObject.layer == LayerMask.NameToLayer("Planet Object")) {
             collidingEntities++;
         }

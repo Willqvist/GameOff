@@ -9,8 +9,15 @@ public class Player : MonoBehaviour
     private float money;
     private Planet planet;
 
-    public void Start()
+    public Planet Planet => planet;
+
+    public void Awake()
     {
         Instance = this;
+    }
+
+    public void LoadPlanet(Planet planet)
+    {
+        this.planet = planet;
     }
 }

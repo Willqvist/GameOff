@@ -32,7 +32,12 @@ public class PlanetObjectPlacer : IClickHandler
 
         RaycastHit hit;
         Ray ray = this.mainCamera.ScreenPointToRay(Input.mousePosition);
-
+        if (Input.GetKeyUp(KeyCode.Escape) || Input.GetMouseButton(1)) {
+            Destroy(this.holding.gameObject);
+            Destroy(this.radiusSphereInstance);
+            this.holding = null;
+            return;
+        }
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~(1 << 8)))
         {
             if (hit.transform.gameObject.tag.Equals("PlanetSide") && hit.transform.parent.gameObject.Equals(this.gameObject))

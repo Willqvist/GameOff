@@ -120,6 +120,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &105110385 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4339704361208283514, guid: b354a848bbf0b1f4fa628e42030e05d8,
+    type: 3}
+  m_PrefabInstance: {fileID: 4339704362351158372}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &311193689
 GameObject:
   m_ObjectHideFlags: 0
@@ -730,7 +736,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entities:
-  - {fileID: 2989757915809511557, guid: 06f7bfb892f78b94bb070dbb82cd8b92, type: 3}
+  - {fileID: 0}
   - {fileID: 5869050308481204914, guid: 01402e8d822e34846ba73748072066b5, type: 3}
   - {fileID: 4450392994218317240, guid: 84f2370f9d12a004ea846af6ebd4d65c, type: 3}
 --- !u!1 &715083397
@@ -993,11 +999,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3d09bf99c0946640af2c303b6069ec8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resources:
-  - resource: {fileID: 11400000, guid: 42b1bfb836f70bf47aea5d9ba4e21e78, type: 2}
-    amount: 0
-  - resource: {fileID: 11400000, guid: 6f75dd3f100980e469470b0a16a1f1ac, type: 2}
-    amount: 0
 --- !u!4 &974707987
 Transform:
   m_ObjectHideFlags: 0
@@ -1096,6 +1097,23 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 4339704362351158372}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1141539556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1141539555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 812636a9aca6fe64285c8caef94f12ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shopItemPrefab: {fileID: 105110385}
+  shopItems:
+  - {fileID: 11400000, guid: f45299c888c1c294d829bc07234d7731, type: 2}
+  - {fileID: 11400000, guid: 32be0fa4317900e409de107c816e9f4a, type: 2}
+  - {fileID: 11400000, guid: e73ede35e9e5ca24290b25639fe15925, type: 2}
 --- !u!1 &1324714472
 GameObject:
   m_ObjectHideFlags: 0
@@ -1595,8 +1613,7 @@ MonoBehaviour:
   colorSettings: {fileID: 11400000, guid: 1658a3c8ad410754dbea183a99f36fc5, type: 2}
   treeType: {fileID: 5869050308481204914, guid: 01402e8d822e34846ba73748072066b5,
     type: 3}
-  mineType: {fileID: 2989757915809511557, guid: 06f7bfb892f78b94bb070dbb82cd8b92,
-    type: 3}
+  mineType: {fileID: 0}
   meshFilters:
   - {fileID: 0}
   - {fileID: 0}
@@ -1690,8 +1707,7 @@ MonoBehaviour:
         m_MethodName: HoldPlanetEntity
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 2989757915809511557, guid: 06f7bfb892f78b94bb070dbb82cd8b92,
-            type: 3}
+          m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: PlanetEntity, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -2070,6 +2086,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 4339704362142326744, guid: b354a848bbf0b1f4fa628e42030e05d8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4339704360925252458, guid: b354a848bbf0b1f4fa628e42030e05d8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2225,11 +2246,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4339704362142326744, guid: b354a848bbf0b1f4fa628e42030e05d8,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4339704361414585626, guid: b354a848bbf0b1f4fa628e42030e05d8,
         type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2250,6 +2266,11 @@ PrefabInstance:
       propertyPath: onClick
       value: 
       objectReference: {fileID: 1551201038}
+    - target: {fileID: 4339704361633380445, guid: b354a848bbf0b1f4fa628e42030e05d8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b354a848bbf0b1f4fa628e42030e05d8, type: 3}
 --- !u!114 &7283531478952661108

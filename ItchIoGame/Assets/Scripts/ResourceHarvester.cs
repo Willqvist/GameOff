@@ -19,6 +19,7 @@ public class ResourceHarvester : PlanetEntity
         */
     }
 
+    /*
     public override void Update()
     {
         base.Update();
@@ -38,6 +39,7 @@ public class ResourceHarvester : PlanetEntity
             tick = 0;
         }
     }
+    */
 
     public override void PlaceOnPlanet(Planet planet,Vector3 point)
     {

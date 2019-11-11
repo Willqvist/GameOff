@@ -6,15 +6,15 @@ using System;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
-
+using UnityEngine.UI;
 public class ButtonController : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler
 {
 
     [SerializeField] private string text;
     [SerializeField] private string name;
     [SerializeField] private Animator animator;
-    [SerializeField] private IClickHandler onClick;
     private TextMeshProUGUI textMesh;
+    private Button button;
     // Start is called before the first frame update
     private void OnValidate()
     {
@@ -22,6 +22,7 @@ public class ButtonController : MonoBehaviour, IPointerEnterHandler, IPointerExi
             this.textMesh = this.GetComponentInChildren<TextMeshProUGUI>();
         this.textMesh.text = text;
         this.animator = this.GetComponent<Animator>();
+        this.button = this.GetComponent<Button>();
     }
     void Start()
     {
@@ -52,14 +53,9 @@ public class ButtonController : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        if(this.onClick == null)
-        {
-            Debug.Log("On click is null in ButtonController::OnPointerUp");
-            return;
-        }
-
         animator.SetBool("clicking", false);
-        onClick.OnClick(this);
+
+        button.onClick.Invoke();
     }
 
     public string getName() {

@@ -22,7 +22,13 @@ public class PlanetObjectPlacer : IClickHandler
         this.planetGenerator = this.GetComponent<PlanetGenerator>();
         this.property = new MaterialPropertyBlock();
     }
-
+    
+    private void DestroyHolding()
+    {
+        Destroy(this.holding.gameObject);
+        Destroy(this.radiusSphereInstance);
+        this.holding = null;
+    }
     public void Update()
     {
         if(this.holding == null)
@@ -33,9 +39,7 @@ public class PlanetObjectPlacer : IClickHandler
         RaycastHit hit;
         Ray ray = this.mainCamera.ScreenPointToRay(Input.mousePosition);
         if (Input.GetKeyUp(KeyCode.Escape) || Input.GetMouseButton(1)) {
-            Destroy(this.holding.gameObject);
-            Destroy(this.radiusSphereInstance);
-            this.holding = null;
+            DestroyHolding();
             return;
         }
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~(1 << 8)))
@@ -51,7 +55,6 @@ public class PlanetObjectPlacer : IClickHandler
                 float waterRange = min + 5 / 256f;
                 if (Vector3.Distance(point, this.transform.position) <= waterRange || sphereCollision.isColliding())
                 {
-                    Debug.Log("on water");
                     if (!onWater)
                     {
                         property.SetColor("_color", onWaterColor);
@@ -95,7 +98,6 @@ public class PlanetObjectPlacer : IClickHandler
     public void HoldPlanetEntity(PlanetEntity planetEntity)
     {
         this.holding = Instantiate(planetEntity);
-        holding.OnPlace();
         this.holding.transform.position = Vector3.zero;
         //this.holding.transform.localScale = Vector3.one;
         this.holding.transform.rotation = Quaternion.identity;
@@ -116,7 +118,7 @@ public class PlanetObjectPlacer : IClickHandler
     {
         if(this.holding != null)
         {
-            Destroy(this.holding);
+            DestroyHolding();
         }
 
         if (button.getName().Equals("BuyTree")) {

@@ -24,7 +24,7 @@ public class PlanetFace
         this.collider = collider;
         this.rg = rg;
     }
-
+    private Vector3 min = new Vector3(-0.1f, -0.1f, -0.1f);
     public void ConstructMesh() {
         Vector3[] vertices = new Vector3[resolution * resolution];
 
@@ -43,7 +43,7 @@ public class PlanetFace
 
                 if (rg.ShouldPlaceTree(vertices[i]) && noise > 0.001f && x % 3 == 0 && y % 3 == 0)
                 {
-                    rg.PlaceTree(vertices[i]);
+                    rg.PlaceTree(vertices[i] - min);
                 }
                 else if(rg.ShouldPlaceMine(vertices[i]) && noise > 0.001f && x % 7 == 0 && y % 7 == 0) {
                     rg.PlaceMine(vertices[i]);

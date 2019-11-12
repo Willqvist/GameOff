@@ -12,11 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34b20622696b48944863219a943341b3, type: 3}
   m_Name: House
   m_EditorClassIdentifier: Assembly-CSharp::FEntityData
-  entityName: House
+  entityName: 0
   cost: 100
   activeWorkersRequirement: 0
-  populationRequirement: 0
   populationIncrease: 10
   pollution: 0
-  electricityCost: 10
-  electricityGainPerSecond: 0
+  electricity: -1

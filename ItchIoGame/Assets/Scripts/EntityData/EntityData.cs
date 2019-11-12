@@ -8,8 +8,7 @@ public class EntityData : ScriptableObject
     public int activeWorkersRequirement;
     public int populationIncrease;
     public float pollution;
-    public float electricityLosePerSecond;
-    public float electricityGainPerSecond;
+    public float electricity;
 }
 
 public enum EntityName

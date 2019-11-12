@@ -17,5 +17,4 @@ MonoBehaviour:
   activeWorkersRequirement: 5
   populationIncrease: 0
   pollution: 10
-  electricityCost: 10
-  electricityGainPerSecond: 0
+  electricity: -5

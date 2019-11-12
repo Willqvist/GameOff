@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2563234488838337592}
   - component: {fileID: 3170976974849728867}
   - component: {fileID: 4450793064030347946}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ParticleSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4764,7 +4764,7 @@ GameObject:
   - component: {fileID: 3497672944757457490}
   - component: {fileID: 3497672944757457489}
   - component: {fileID: 3497672944757457488}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Vespene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4813,7 +4813,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entityData: {fileID: 0}
-  entityName: Vespene
   colliderHeight: 2
   sphereRadius: 1
 --- !u!1001 &3497672945913472109
@@ -4827,6 +4826,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: vespene
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 6895d1e4930734c4b90d3751fb5e6408,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -4425609515867240179, guid: 6895d1e4930734c4b90d3751fb5e6408,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -4441904899832458722, guid: 6895d1e4930734c4b90d3751fb5e6408,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 6895d1e4930734c4b90d3751fb5e6408,
         type: 3}

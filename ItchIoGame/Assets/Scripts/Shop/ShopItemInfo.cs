@@ -15,19 +15,26 @@ public class ShopItemInfo : MonoBehaviour
 
     public void ShowInfo(ShopItemData shopItemData)
     {
-        if(shopItemData.entityData.electricityLosePerSecond > 0)
-            this.context.text += $"Electricity cost: <color=#FF0000>-{shopItemData.entityData.electricityLosePerSecond}\n</color>";
+        if (shopItemData.entityData.electricity != 0)
+        {
+            string color = shopItemData.entityData.electricity < 0 ? "#FF0000" : "#00FF00";
+            this.context.text += $"<sprite=0> Electricity: <color={color}>{shopItemData.entityData.electricity}\n</color>";
+        }
 
-        if(shopItemData.entityData.electricityGainPerSecond > 0)
-            this.context.text += $"Electricity gain per second: <color=#00FF00>+{shopItemData.entityData.electricityGainPerSecond}\n</color>";
-
-        if(shopItemData.entityData.pollution > 0)
-            this.context.text += $"Pollution: <color=#FF0000>+{shopItemData.entityData.pollution}\n</color>";
+        if (shopItemData.entityData.pollution != 0)
+        {
+            string color = shopItemData.entityData.pollution > 0 ? "#FF0000" : "#00FF00";
+            this.context.text += $"<sprite=1> Pollution: <color={color}>{shopItemData.entityData.pollution}\n</color>";
+        }
 
         if (shopItemData.entityData.activeWorkersRequirement > 0)
-            this.context.text += $"Worker capacity: <color=#FFFFFF>{shopItemData.entityData.activeWorkersRequirement}\n</color>";
+            this.context.text += $"<sprite=3> Worker capacity: <color=#FFFFFF>{shopItemData.entityData.activeWorkersRequirement}\n</color>";
 
-        if (shopItemData.entityData.populationIncrease > 0)
-            this.context.text += $"Increases population by: <color=#00FF00>+{shopItemData.entityData.populationIncrease}\n</color>";
+        if (shopItemData.entityData.populationIncrease != 0)
+        {
+            string color = shopItemData.entityData.populationIncrease < 0 ? "#FF0000" : "#00FF00";
+            this.context.text += $"<sprite=2> Increases population by: <color={color}>{shopItemData.entityData.populationIncrease}\n</color>";
+
+        }
     }
 }

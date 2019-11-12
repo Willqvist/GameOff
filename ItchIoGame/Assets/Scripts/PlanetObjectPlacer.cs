@@ -13,6 +13,7 @@ public class PlanetObjectPlacer : IClickHandler
     private PlanetGenerator planetGenerator;
     private SphereCollisionHandler sphereCollision;
     private bool onWater = false;
+    private ObjectPlacerListener listener;
     private MaterialPropertyBlock property;
     [ColorUsage(true, true)]
     public Color onWaterColor,onLandColor;
@@ -22,17 +23,21 @@ public class PlanetObjectPlacer : IClickHandler
         this.planetGenerator = this.GetComponent<PlanetGenerator>();
         this.property = new MaterialPropertyBlock();
     }
-    
-    private void DestroyHolding()
+    private void OnSignalDestroy()
     {
         property.SetColor("_color", onWaterColor);
         Destroy(this.holding.gameObject);
         Destroy(this.radiusSphereInstance);
         this.holding = null;
     }
+    private void DestroyHolding()
+    {
+        this.listener.SignalOnCancel();
+    }
     public void Update()
     {
-        if(this.holding == null)
+        if (EventSystem.current.IsPointerOverGameObject()) return;
+        if (this.holding == null)
         {
             return;
         }
@@ -81,7 +86,9 @@ public class PlanetObjectPlacer : IClickHandler
                 {
                     this.holding.PlaceOnPlanet(instance, point);
                     this.holding = null;
+                    this.listener.SignalOnPlace();
                     Destroy(this.radiusSphereInstance);
+                    this.listener.SignalOnPlace();
                 }
             }
         }
@@ -90,33 +97,36 @@ public class PlanetObjectPlacer : IClickHandler
             this.holding.transform.position = Vector3.zero;
             if(Input.GetMouseButton(0))
             {
-                Destroy(this.holding);
-                this.holding = null;
+                DestroyHolding();
             }
         }
     }
 
     public void HoldPlanetEntity(PlanetEntity planetEntity)
     {
+
         this.holding = Instantiate(planetEntity);
         this.holding.transform.position = Vector3.zero;
         //this.holding.transform.localScale = Vector3.one;
         this.holding.transform.rotation = Quaternion.identity;
         this.holding.transform.SetParent(this.transform);
-        
+
+        property.SetColor("_color", onWaterColor);
         this.radiusSphereInstance = Instantiate(this.radiusSpherePrefab);
         sphereCollision = radiusSphereInstance.GetComponent<SphereCollisionHandler>();
         sphereCollision.setHolding(this.holding.gameObject);
         this.radiusSphereInstance.transform.position = Vector3.zero;
         this.radiusSphereInstance.transform.rotation = Quaternion.identity;
         this.radiusSphereInstance.transform.localScale = new Vector3(planetEntity.sphereRadius, 1, planetEntity.sphereRadius);
-
+        this.radiusSphereInstance.GetComponent<MeshRenderer>().SetPropertyBlock(property);
         this.radiusSphereInstance.transform.SetParent(this.transform);
         
     }
 
-    public void PlaceObject(EntityName entity)
+    public void PlaceObject(ObjectPlacerListener listener,EntityName entity)
     {
+        this.listener = listener;
+        this.listener.OnCancelListener(OnSignalDestroy);
         PlanetEntity e = PrefabData.Instance.GetEntity(entity);
         HoldPlanetEntity(e);
     }

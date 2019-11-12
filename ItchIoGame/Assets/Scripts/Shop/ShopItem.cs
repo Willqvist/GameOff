@@ -8,8 +8,10 @@ public class ShopItem : MonoBehaviour
     public ButtonController buyButton;
     public TextMeshProUGUI title;
     public TextMeshProUGUI price;
+    public TextMeshProUGUI buybuttonText;
     public ShopItemInfo info;
-
+    private bool isBuying = false;
+    ObjectPlacerListener listener;
     public void Load(ShopItemData shopItemData)
     {
         this.title.text = shopItemData.entityData.entityName.ToDescription();
@@ -17,7 +19,33 @@ public class ShopItem : MonoBehaviour
         this.info.ShowInfo(shopItemData);
         this.buyButton.RegisterOnClickEvent(() =>
         {
-            Player.Instance.Planet.GetComponent<PlanetObjectPlacer>().PlaceObject(shopItemData.entityData.entityName);
+            if (isBuying && listener != null)
+            {
+                listener.SignalOnCancel();
+                return;
+            }
+            if (ObjectPlacerListener.IsWorking()) return;
+            Debug.Log("buying");
+            listener = ObjectPlacerListener.create();
+            listener.OnCancelListener(OnCancel);
+            listener.OnPlaceListener(OnPlace);
+            Player.Instance.Planet.GetComponent<PlanetObjectPlacer>().PlaceObject(listener,shopItemData.entityData.entityName);
+            buybuttonText.SetText("X Buy");
+            isBuying = true;
+
         });
+    }
+
+    private void OnCancel()
+    {
+        isBuying = false;
+        buybuttonText.SetText("$ Buy");
+        ObjectPlacerListener.clear();
+        listener = null;
+    }
+
+    private void OnPlace()
+    {
+        OnCancel();
     }
 }

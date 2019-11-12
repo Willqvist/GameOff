@@ -1,5 +1,40 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &873146198
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 873146199}
+  m_Layer: 5
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &873146199
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 873146198}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6990586418280298839}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1728711283323692786
 GameObject:
   m_ObjectHideFlags: 0
@@ -64,7 +99,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: '<sprite=1> Pollution: <color=#00FF00>-10
+
+    </color>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f488fb5f8edc47a4181baad459e85db5, type: 2}
   m_sharedMaterial: {fileID: 477929171019761283, guid: f488fb5f8edc47a4181baad459e85db5,
@@ -134,13 +171,13 @@ MonoBehaviour:
   m_margin: {x: -299.15405, y: -148.0166, z: -298.22302, w: -6.371826}
   m_textInfo:
     textComponent: {fileID: 3665209838198618833}
-    characterCount: 0
+    characterCount: 1
     spriteCount: 0
-    spaceCount: 0
-    wordCount: 0
+    spaceCount: 1
+    wordCount: 1
     linkCount: 0
-    lineCount: 0
-    pageCount: 0
+    lineCount: 1
+    pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
@@ -695,7 +732,8 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 873146199}
   m_Father: {fileID: 6517635849156009645}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -804,7 +842,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: A Tree sucking out all the bad pollution from the air.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f488fb5f8edc47a4181baad459e85db5, type: 2}
   m_sharedMaterial: {fileID: 477929171019761283, guid: f488fb5f8edc47a4181baad459e85db5,
@@ -1003,8 +1041,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rts:
-  - {fileID: 2114807934917729617}
-  - {fileID: 2524194000734684488}
+  - {fileID: 7917698984600173474}
 --- !u!1 &7917698984600173474
 GameObject:
   m_ObjectHideFlags: 0
@@ -1015,6 +1052,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6846530354121566559}
   - component: {fileID: 4309420894033703531}
+  - component: {fileID: 2966014115339840390}
   m_Layer: 5
   m_Name: ObjectInformation
   m_TagString: Untagged
@@ -1029,7 +1067,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7917698984600173474}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1055,7 +1093,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c41a1a36d14e5446b999493a3c9e0a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2966014115339840390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7917698984600173474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bd2e11cfc74132428c264aae53e101e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   title: {fileID: 6218270887917369787}
-  description: {fileID: 2853342885081359055}
   info: {fileID: 3665209838198618833}
+  description: {fileID: 2853342885081359055}
   closer: {fileID: 5897541790418449792}

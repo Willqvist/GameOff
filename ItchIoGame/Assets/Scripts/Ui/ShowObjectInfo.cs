@@ -4,8 +4,10 @@ using UnityEngine;
 using TMPro;
 public class ShowObjectInfo : MonoBehaviour
 {
-    public TextMeshProUGUI title, description,info;
-    public CloseUI closer;
+    private TextMeshProUGUI title, description,info;
+    private CloseUI closer;
+
+
     public void ShowEntity(EntityData data)
     {
         this.title.SetText(data.name);

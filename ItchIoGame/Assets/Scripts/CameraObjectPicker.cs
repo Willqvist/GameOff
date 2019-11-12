@@ -25,7 +25,8 @@ public class CameraObjectPicker : MonoBehaviour
         {
             if (hit.transform.gameObject.layer == 8)
             {
-                info.ShowEntity(hit.transform.gameObject.GetComponent<PlanetEntity>().entityData);
+                //info.ShowEntity(hit.transform.gameObject.GetComponent<PlanetEntity>().entityData);
+                PanelManager.Get<PanelObjectInfo>().Show(hit.transform.gameObject.GetComponent<PlanetEntity>().entityData);
             }
         }
     }

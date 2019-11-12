@@ -2,17 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-public class CloseUI : IClickHandler
+public class CloseUI : MonoBehaviour, IPointerUpHandler
 {
     // Start is called before the first frame update
     public GameObject[] rts;
     private bool expanded = true;
 
-
-    public override void OnClick(ButtonController button)
+    public void OnPointerUp(PointerEventData eventData)
     {
-        if (expanded) {
-            foreach(GameObject rt in rts)
+        SetUIVisible(!expanded);
+    }
+
+    public void SetUIVisible(bool state)
+    {
+        if (!state)
+        {
+            foreach (GameObject rt in rts)
                 rt.SetActive(false);
         }
         else
@@ -21,7 +26,6 @@ public class CloseUI : IClickHandler
                 rt.SetActive(true);
         }
 
-        expanded = !expanded;
+        expanded = state;
     }
-
 }

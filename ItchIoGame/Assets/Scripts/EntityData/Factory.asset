@@ -18,3 +18,4 @@ MonoBehaviour:
   populationIncrease: 0
   pollution: 10
   electricity: -5
+  description: Factory gathers resources from the planet

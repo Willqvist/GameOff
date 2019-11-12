@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class PlanetObjectPlacer : IClickHandler
+public class PlanetObjectPlacer : IPointerClickHandler
 {
     [SerializeField] private Camera mainCamera;
     public PlanetEntity holding;

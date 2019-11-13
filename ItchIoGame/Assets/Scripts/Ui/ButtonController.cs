@@ -14,8 +14,11 @@ public class ButtonController : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     private void Awake()
     {
-        this.animator = this.GetComponent<Animator>();
-        this.button = this.GetComponent<Button>();
+        if (this.button == null || this.animator == null)
+        {
+            this.animator = this.GetComponent<Animator>();
+            this.button = this.GetComponent<Button>();
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -48,6 +51,11 @@ public class ButtonController : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     public void RegisterOnClickEvent(UnityAction action)
     {
+        if (button == null)
+        {
+            Awake();
+        }
+        Debug.Log(this.gameObject.name + " | " + this.button);
         this.button.onClick.AddListener(action);
     }
 }

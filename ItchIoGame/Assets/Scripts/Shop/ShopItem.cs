@@ -39,6 +39,7 @@ public class ShopItem : MonoBehaviour
     private void OnCancel()
     {
         isBuying = false;
+        //PanelManager.Get<PanelOk>().Show("Cancel Buy", "You sure!?", (b) => { Debug.Log("click on: " + b); });
         buybuttonText.SetText("$ Buy");
         ObjectPlacerListener.clear();
         listener = null;

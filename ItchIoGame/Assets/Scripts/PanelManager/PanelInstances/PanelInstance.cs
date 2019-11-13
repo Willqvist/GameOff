@@ -5,17 +5,19 @@ using UnityEngine;
 public class PanelInstance : MonoBehaviour
 {
     public PanelName name;
-    public PanelComponents components;
+    [SerializeField]private PanelComponents components;
     protected PanelComponents instanciatedComponent;
     protected GameObject instance;
+    protected bool instanciated = false;
     private static Dictionary<PanelName, PanelInstance> prefabs = new Dictionary<PanelName, PanelInstance>();
 
-    protected virtual PanelInstance OnCreate()
+    protected PanelInstance OnCreate()
     {
+        instanciated = true;
         instance = Instantiate(components.gameObject);
         instanciatedComponent = GetComponentInObject();
-        instance.transform.SetParent(this.transform);
-        instance.transform.localPosition = new Vector3(0,0,0);
+        instance.transform.SetParent(this.transform,false);
+        //instance.transform.localPosition = new Vector3(0,0,0);
         return this;
     }
 
@@ -27,12 +29,16 @@ public class PanelInstance : MonoBehaviour
 
     public static T GetInstance<T>(PanelName name) where T : PanelInstance
     {
-        return (T)prefabs[name];
+        PanelInstance i = prefabs[name];
+        if (!i.instanciated)
+        {
+            i.OnCreate();
+        }
+        return (T)i;
     }
 
     public static T CreateInstance<T>(PanelName name) where T : PanelInstance
     {
-        Debug.Log(name);
         return (T)prefabs[name].OnCreate();
     }
 

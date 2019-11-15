@@ -4815,6 +4815,7 @@ MonoBehaviour:
   entityData: {fileID: 11400000, guid: 3171ec16cb1cfa04496c049de69c09b5, type: 2}
   colliderHeight: 2
   sphereRadius: 1
+  isRunning: 1
 --- !u!1001 &3497672945913472109
 PrefabInstance:
   m_ObjectHideFlags: 0

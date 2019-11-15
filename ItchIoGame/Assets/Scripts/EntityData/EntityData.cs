@@ -19,5 +19,6 @@ public enum EntityName
     [Description("Factory")] Factory,
     [Description("Human")] Human,
     [Description("Vespene")] Vespene,
-    [Description("Mine")] Mine
+    [Description("Mine")] Mine,
+    [Description("Flower")] Flower
 }

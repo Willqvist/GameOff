@@ -58,7 +58,6 @@ public class PlanetObjectPlacer : IPointerClickHandler
                 float min = planetGenerator.getMinMax().Min;
                 float max = planetGenerator.getMinMax().Max;
                 float waterRange = min + 5 / 256f;
-                Debug.Log(Vector3.Distance(point, this.transform.position) + " | " + waterRange);
                 if (Vector3.Distance(point, this.transform.position) <= waterRange || sphereCollision.isColliding())
                 {
                     if (!onWater)

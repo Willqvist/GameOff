@@ -43,7 +43,7 @@ public class ResourceGenerator
        PlanetEntity obj = GameObject.Instantiate(tree,point,Quaternion.identity);
        obj.transform.SetParent(planet.transform);
        obj.RotateTowardsPlanet(planet);
-
+       obj.PlaceOnPlanet(planet, point);
     }
 
     public void PlaceMine(Vector3 point)
@@ -51,5 +51,6 @@ public class ResourceGenerator
         PlanetEntity obj = GameObject.Instantiate(mine, point, Quaternion.identity);
         obj.transform.SetParent(planet.transform);
         obj.RotateTowardsPlanet(planet);
+        obj.PlaceOnPlanet(planet, point);
     }
 }

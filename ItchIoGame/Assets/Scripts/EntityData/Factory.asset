@@ -16,6 +16,6 @@ MonoBehaviour:
   cost: 50
   activeWorkersRequirement: 5
   populationIncrease: 0
-  pollution: 10
+  pollution: 1
   electricity: -5
   description: Factory gathers resources from the planet

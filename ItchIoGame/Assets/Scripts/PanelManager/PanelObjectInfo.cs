@@ -5,43 +5,47 @@ using UnityEngine;
 public class PanelObjectInfo : Panel
 {
     private ObjectPanelComponent inst;
-    public void Show(EntityData data)
+    public void Show(PlanetEntity entity)
     {
         if (inst == null)
         {
             inst = PanelInstance.CreateInstance<PanelInstanceObject>(PanelName.PANEL_OBJECT_INFO).GetComponent();
         }
 
-        inst.title.SetText(data.name);
-        inst.description.SetText(data.description);
-        ShowEntityInfo(data);
+        inst.title.SetText(entity.entityData.name);
+        inst.description.SetText(entity.entityData.description);
+        ShowEntityInfo(entity);
         inst.closer.SetUIVisible(true);
     }
-    private void ShowEntityInfo(EntityData data)
+
+    private void ShowEntityInfo(PlanetEntity entity)
     {
         inst.info.text = "";
-        if (data.electricity != 0)
+        if (entity.entityData.electricity != 0)
         {
-            string prefix = data.electricity > 0 ? "+" : "";
-            string color = data.electricity < 0 ? "#FF0000" : "#00FF00";
-            inst.info.text += $"<sprite=0> Electricity: <color={color}>{prefix}{data.electricity}\n</color>";
+            string prefix = entity.entityData.electricity > 0 ? "+" : "";
+            string color = entity.entityData.electricity < 0 ? "#FF0000" : "#00FF00";
+            inst.info.text += $"<sprite=0> Electricity: <color={color}>{prefix}{entity.entityData.electricity} ({entity.ActiveStatus})</color>\n";
+            
         }
 
-        if (data.pollution != 0)
+        if (entity.entityData.pollution != 0)
         {
-            string prefix = data.pollution > 0 ? "+" : "";
-            string color = data.pollution > 0 ? "#FF0000" : "#00FF00";
-            inst.info.text += $"<sprite=1> Pollution: <color={color}>{prefix}{data.pollution}\n</color>";
+            string prefix = entity.entityData.pollution > 0 ? "+" : "";
+            string color = entity.entityData.pollution > 0 ? "#FF0000" : "#00FF00";
+            inst.info.text += $"<sprite=1> Pollution: <color={color}>{prefix}{entity.entityData.pollution}\n</color>";
         }
 
-        if (data.activeWorkersRequirement > 0)
-            inst.info.text += $"<sprite=3> Worker capacity: <color=#FFFFFF>{data.activeWorkersRequirement}\n</color>";
-
-        if (data.populationIncrease != 0)
+        if (entity.entityData.activeWorkersRequirement > 0)
         {
-            string prefix = data.populationIncrease > 0 ? "+" : "";
-            string color = data.populationIncrease < 0 ? "#FF0000" : "#00FF00";
-            inst.info.text += $"<sprite=2> Increases population by: <color={color}>{prefix}{data.populationIncrease}\n</color>";
+            inst.info.text += $"<sprite=3> Worker capacity: <color=#FFFFFF>{entity.ActiveWorkers} / {entity.entityData.activeWorkersRequirement}\n</color>";
+        }
+
+        if (entity.entityData.populationIncrease != 0)
+        {
+            string prefix = entity.entityData.populationIncrease > 0 ? "+" : "";
+            string color = entity.entityData.populationIncrease < 0 ? "#FF0000" : "#00FF00";
+            inst.info.text += $"<sprite=2> Increases population by: <color={color}>{prefix}{entity.entityData.populationIncrease}\n</color>";
         }
     }
 }

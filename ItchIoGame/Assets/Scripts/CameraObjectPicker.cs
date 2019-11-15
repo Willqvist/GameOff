@@ -7,7 +7,6 @@ public class CameraObjectPicker : MonoBehaviour
 {
 
     private RaycastHit hit;
-    [SerializeField] private ShowObjectInfo info;
     private Ray ray;
     private Camera mainCamera;
     // Start is called before the first frame update
@@ -26,7 +25,11 @@ public class CameraObjectPicker : MonoBehaviour
             if (hit.transform.gameObject.layer == 8)
             {
                 //info.ShowEntity(hit.transform.gameObject.GetComponent<PlanetEntity>().entityData);
-                PanelManager.Get<PanelObjectInfo>().Show(hit.transform.gameObject.GetComponent<PlanetEntity>().entityData);
+                PlanetEntity e = hit.transform.gameObject.GetComponent<PlanetEntity>();
+                if(e != null && e.HasPlaced)
+                {
+                    PanelManager.Get<PanelObjectInfo>().Show(e);
+                }
             }
         }
     }

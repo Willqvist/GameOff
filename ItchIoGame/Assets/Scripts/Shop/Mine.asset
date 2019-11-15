@@ -9,13 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34b20622696b48944863219a943341b3, type: 3}
-  m_Name: Factory
+  m_Script: {fileID: 11500000, guid: 0662fc7d010422249ae22e4dd725bdff, type: 3}
+  m_Name: Mine
   m_EditorClassIdentifier: 
-  entityName: 2
-  cost: 50
-  activeWorkersRequirement: 5
-  populationIncrease: 0
-  pollution: 2
-  electricity: 10
-  description: Factory gathers resources from the planet
+  entityData: {fileID: 11400000, guid: 7db0412c4251c8744b6c68bc4ae95ba4, type: 2}

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.Linq;
 public class PlanetEntity : MonoBehaviour 
 {
     public EntityData entityData;
@@ -11,7 +11,7 @@ public class PlanetEntity : MonoBehaviour
     protected Planet planet;
     private int activeWorkers;
     private bool hasPlaced;
-    private bool isRunning = true;
+    public bool isRunning = true;
 
     public bool HasPlaced => hasPlaced;
     public int ActiveWorkers => activeWorkers;
@@ -64,11 +64,26 @@ public class PlanetEntity : MonoBehaviour
             isRunning = false;
             planet.QueueEntityForLowElectricityActivation(this);
         }
+
+        if(this.isRunning == false)
+        {
+            MeshRenderer[] renderer = this.GetComponentsInChildren<MeshRenderer>();
+            Debug.Log(renderer.Length);
+            foreach(var r in renderer)
+            {
+                r.materials[0].SetColor("_TintColor", Color.red);
+            }
+        }
     }
 
     public void StartRunning()
     {
         this.isRunning = true;
+        MeshRenderer[] renderer = this.GetComponentsInChildren<MeshRenderer>();
+        foreach (var r in renderer)
+        {
+            r.material.color = Color.red;
+        }
     }
 
     public float getColliderHeight()

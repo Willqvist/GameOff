@@ -50,34 +50,78 @@ public class PlanetObjectPlacer : IPointerClickHandler
         }
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~(1 << 8)))
         {
+            bool ignorewaterCheck = false;
             if (hit.transform.gameObject.tag.Equals("PlanetSide") && hit.transform.parent.gameObject.Equals(this.gameObject))
             {
+                if(this.holding.GetComponent<Mine>() != null)
+                {
+                    Collider[] hits = Physics.OverlapSphere(hit.point, 0.1f);
+                    foreach(var h in hits)
+                    {
+                        if(h.transform.CompareTag("Vespene"))
+                        {
+                            //Fulhack
+                            property.SetColor("_color", onLandColor);
+                            this.radiusSphereInstance.GetComponent<MeshRenderer>().SetPropertyBlock(property);
+                            this.holding.transform.position = h.transform.position;
+                            this.holding.RotateTowardsPlanet(this.instance);
+                            this.radiusSphereInstance.transform.position = this.holding.transform.position;
+                            this.radiusSphereInstance.transform.rotation = this.holding.transform.rotation;
+
+                            if (Input.GetMouseButton(0))
+                            {
+                                this.holding.PlaceOnPlanet(instance, this.holding.transform.position);
+                                Destroy(h.gameObject);
+                                this.holding = null;
+                                this.listener.SignalOnPlace();
+                                Destroy(this.radiusSphereInstance);
+                                this.listener.SignalOnPlace();
+                                return;
+                            }
+
+                            return;
+                        }
+                        else
+                        {
+                            property.SetColor("_color", onWaterColor);
+                            this.radiusSphereInstance.GetComponent<MeshRenderer>().SetPropertyBlock(property);
+                        }
+                    }
+
+                    ignorewaterCheck = true;
+                }
+
                 this.holding.RotateTowardsPlanet(this.instance);
                 this.radiusSphereInstance.transform.rotation = this.holding.transform.rotation;
                 Vector3 point = hit.point + this.holding.transform.up * holding.colliderHeight * 0.5f;
-                float min = planetGenerator.getMinMax().Min;
-                float max = planetGenerator.getMinMax().Max;
-                float waterRange = min + 5 / 256f;
-                if (Vector3.Distance(point, this.transform.position) <= waterRange || sphereCollision.isColliding())
+
+                if(!ignorewaterCheck)
                 {
-                    if (!onWater)
+                    float min = planetGenerator.getMinMax().Min;
+                    float max = planetGenerator.getMinMax().Max;
+                    float waterRange = min + 5 / 256f;
+                    if (Vector3.Distance(point, this.transform.position) <= waterRange || sphereCollision.isColliding())
                     {
-                        property.SetColor("_color", onWaterColor);
-                        this.radiusSphereInstance.GetComponent<MeshRenderer>().SetPropertyBlock(property);
+                        if (!onWater)
+                        {
+                            property.SetColor("_color", onWaterColor);
+                            this.radiusSphereInstance.GetComponent<MeshRenderer>().SetPropertyBlock(property);
+                        }
+                        onWater = true;
+
                     }
-                    onWater = true;
-
-                }
-                else {
-
-                    if (onWater)
+                    else
                     {
-                        property.SetColor("_color", onLandColor);
-                        this.radiusSphereInstance.GetComponent<MeshRenderer>().SetPropertyBlock(property);
-                    }
 
-                    onWater = false;
-                    
+                        if (onWater)
+                        {
+                            property.SetColor("_color", onLandColor);
+                            this.radiusSphereInstance.GetComponent<MeshRenderer>().SetPropertyBlock(property);
+                        }
+
+                        onWater = false;
+
+                    }
                 }
                 this.holding.transform.position = point;
                 this.radiusSphereInstance.transform.position = this.holding.transform.position;

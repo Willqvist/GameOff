@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
     public static Player Instance { get; private set; }
 
-    [HideInInspector] public float money;
+    public float money;
     private Planet planet;
 
     public Planet Planet => planet;

@@ -89,6 +89,11 @@ public class PlanetObjectPlacer : IPointerClickHandler
                     }
 
                     ignorewaterCheck = true;
+                    this.holding.transform.position = hit.point + this.holding.transform.up * holding.colliderHeight * 0.5f;
+                    this.radiusSphereInstance.transform.position = this.holding.transform.position;
+                    this.holding.RotateTowardsPlanet(this.instance);
+                    this.radiusSphereInstance.transform.rotation = this.holding.transform.rotation;
+                    return;
                 }
 
                 this.holding.RotateTowardsPlanet(this.instance);

@@ -14,14 +14,7 @@ public class Planet : MonoBehaviour
     public int population;
     public float pollution;
     public float electricity;
-
-    public float Happiness
-    {
-        get
-        {
-            return (activeWorkers / (float)population) * 100;
-        }
-    }
+    public float happiness;
 
     public void Start()
     {

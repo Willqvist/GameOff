@@ -18,4 +18,6 @@ MonoBehaviour:
   populationIncrease: 10
   pollution: 0
   electricity: -1
+  happiness: 0
   description: Provides a warm new house for the population on the planet
+  canSell: 1

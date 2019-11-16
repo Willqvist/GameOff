@@ -6,5 +6,6 @@ public class ObjectPanelComponent : PanelComponents
 {
     public TextMeshProUGUI title, info, description;
     public CloseUI closer;
-
+    public TextMeshProUGUI sellAmount;
+    public ButtonController sellButton;
 }

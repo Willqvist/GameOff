@@ -18,4 +18,6 @@ MonoBehaviour:
   populationIncrease: 0
   pollution: -0.001
   electricity: 0
+  happiness: 5
   description: Regular old flower
+  canSell: 1

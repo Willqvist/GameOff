@@ -36,6 +36,6 @@ public class PlanetInformation : MonoBehaviour
         }
 
         this.electricity.text = Player.Instance.Planet.electricity + " /s";
-        this.happiness.text = Player.Instance.Planet.Happiness + " %";
+        this.happiness.text = (Player.Instance.Planet.happiness >= 0 ? "<color=#00FF00>+" : "<color=#FF0000>") + Player.Instance.Planet.happiness + "</color>";
     }
 }

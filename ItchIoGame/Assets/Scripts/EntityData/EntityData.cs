@@ -9,7 +9,9 @@ public class EntityData : ScriptableObject
     public int populationIncrease;
     public float pollution;
     public float electricity;
+    public float happiness;
     public string description;
+    public bool canSell;
 }
 
 public enum EntityName

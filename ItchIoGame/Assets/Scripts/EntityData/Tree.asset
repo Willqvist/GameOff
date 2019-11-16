@@ -18,4 +18,6 @@ MonoBehaviour:
   populationIncrease: 0
   pollution: -0.01
   electricity: 0
+  happiness: 0
   description: A Tree sucking out all the bad pollution from the air.
+  canSell: 1

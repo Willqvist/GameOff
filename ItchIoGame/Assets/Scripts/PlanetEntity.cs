@@ -65,25 +65,12 @@ public class PlanetEntity : MonoBehaviour
             planet.QueueEntityForLowElectricityActivation(this);
         }
 
-        if(this.isRunning == false)
-        {
-            MeshRenderer[] renderer = this.GetComponentsInChildren<MeshRenderer>();
-            Debug.Log(renderer.Length);
-            foreach(var r in renderer)
-            {
-                r.materials[0].SetColor("_TintColor", Color.red);
-            }
-        }
+        planet.happiness += this.entityData.happiness;
     }
 
     public void StartRunning()
     {
         this.isRunning = true;
-        MeshRenderer[] renderer = this.GetComponentsInChildren<MeshRenderer>();
-        foreach (var r in renderer)
-        {
-            r.material.color = Color.red;
-        }
     }
 
     public float getColliderHeight()

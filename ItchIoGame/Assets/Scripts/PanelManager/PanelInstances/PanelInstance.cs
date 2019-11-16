@@ -7,16 +7,17 @@ public class PanelInstance : MonoBehaviour
     public PanelName name;
     [SerializeField]private PanelComponents components;
     protected PanelComponents instanciatedComponent;
-    protected GameObject instance;
+    public GameObject instance;
     protected bool instanciated = false;
     private static Dictionary<PanelName, PanelInstance> prefabs = new Dictionary<PanelName, PanelInstance>();
 
     protected PanelInstance OnCreate()
     {
         instanciated = true;
-        instance = Instantiate(components.gameObject);
+        instance.SetActive(true);
+        //instance = Instantiate(components.gameObject);
         instanciatedComponent = GetComponentInObject();
-        instance.transform.SetParent(this.transform,false);
+        //instance.transform.SetParent(this.transform,false);
         //instance.transform.localPosition = new Vector3(0,0,0);
         return this;
     }

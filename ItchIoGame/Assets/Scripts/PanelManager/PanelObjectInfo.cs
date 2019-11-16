@@ -14,6 +14,32 @@ public class PanelObjectInfo : Panel
 
         inst.title.SetText(entity.entityData.name);
         inst.description.SetText(entity.entityData.description);
+
+        if(entity.entityData.canSell)
+        {
+            this.inst.sellAmount.gameObject.SetActive(true);
+            this.inst.sellButton.gameObject.SetActive(true);
+
+            inst.sellAmount.SetText("$ " + (entity.entityData.cost * ConstMultiplier.MONEY).ToString());
+            inst.sellButton.ClearEvents();
+            inst.sellButton.RegisterOnClickEvent(() =>
+            {
+                if (entity.gameObject == null)
+                {
+                    return;
+                }
+
+                Player.Instance.money += entity.entityData.cost * ConstMultiplier.MONEY;
+                Object.Destroy(entity.gameObject);
+                this.inst.gameObject.SetActive(false);
+            });
+        }
+        else
+        {
+            this.inst.sellAmount.gameObject.SetActive(false);
+            this.inst.sellButton.gameObject.SetActive(false);
+        }
+
         ShowEntityInfo(entity);
         inst.closer.SetUIVisible(true);
     }
@@ -46,6 +72,13 @@ public class PanelObjectInfo : Panel
             string prefix = entity.entityData.populationIncrease > 0 ? "+" : "";
             string color = entity.entityData.populationIncrease < 0 ? "#FF0000" : "#00FF00";
             inst.info.text += $"<sprite=2> Increases population by: <color={color}>{prefix}{entity.entityData.populationIncrease}\n</color>";
+        }
+
+        if(entity.entityData.happiness != 0)
+        {
+            string prefix = entity.entityData.happiness > 0 ? "+" : "";
+            string color = entity.entityData.happiness < 0 ? "#FF0000" : "#00FF00";
+            inst.info.text += $"<sprite=2> Happiness: <color={color}>{prefix}{entity.entityData.happiness}\n</color>";
         }
     }
 }

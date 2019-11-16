@@ -12,6 +12,7 @@ public class ShopItem : MonoBehaviour
     public ShopItemInfo info;
     private bool isBuying = false;
     ObjectPlacerListener listener;
+
     public void Load(ShopItemData shopItemData)
     {
         this.title.text = shopItemData.entityData.entityName.ToDescription();
@@ -19,6 +20,12 @@ public class ShopItem : MonoBehaviour
         this.info.ShowInfo(shopItemData);
         this.buyButton.RegisterOnClickEvent(() =>
         {
+            if(Player.Instance.money < shopItemData.entityData.cost)
+            {
+                //Show some stupid message here
+                return;
+            }
+
             if (isBuying && listener != null)
             {
                 listener.SignalOnCancel();
@@ -30,6 +37,7 @@ public class ShopItem : MonoBehaviour
             listener.OnCancelListener(OnCancel);
             listener.OnPlaceListener(OnPlace);
             Player.Instance.Planet.GetComponent<PlanetObjectPlacer>().PlaceObject(listener,shopItemData.entityData.entityName);
+            Player.Instance.money -= shopItemData.entityData.cost;
             buybuttonText.SetText("X Buy");
             isBuying = true;
 

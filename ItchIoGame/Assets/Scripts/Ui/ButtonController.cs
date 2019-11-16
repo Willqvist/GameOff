@@ -58,4 +58,9 @@ public class ButtonController : MonoBehaviour, IPointerEnterHandler, IPointerExi
         Debug.Log(this.gameObject.name + " | " + this.button);
         this.button.onClick.AddListener(action);
     }
+
+    public void ClearEvents()
+    {
+        this.button.onClick.RemoveAllListeners();
+    }
 }

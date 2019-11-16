@@ -1362,7 +1362,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 40, y: -110.000244}
+  m_AnchoredPosition: {x: 40, y: -110}
   m_SizeDelta: {x: 850, y: -150}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &4339704360538247589
@@ -1998,6 +1998,7 @@ GameObject:
   - component: {fileID: 5845128129598295823}
   - component: {fileID: 7072065274961254901}
   - component: {fileID: 8792718931502908384}
+  - component: {fileID: 6004993895782676042}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -2138,6 +2139,21 @@ MonoBehaviour:
   components: {fileID: 2387765906781907235, guid: 417654522f407ce488413bfcb6e48bad,
     type: 3}
   instance: {fileID: 4813507824556692554}
+--- !u!114 &6004993895782676042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4339704360925252462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67f8e01ccd6381f4db9f45f268e4aecb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  worldSpaceText: {fileID: 3278342930490692579, guid: 26d1642b021c41743bcc89c8c6a8c427,
+    type: 3}
+  cam: {fileID: 0}
 --- !u!1 &4339704360927729713
 GameObject:
   m_ObjectHideFlags: 0
@@ -2669,7 +2685,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 4339704361335923321}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.80726784
+  m_Size: 0.95
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

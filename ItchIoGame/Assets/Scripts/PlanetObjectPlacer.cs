@@ -128,6 +128,8 @@ public class PlanetObjectPlacer : IPointerClickHandler
                 if (Input.GetMouseButton(0) && !onWater)
                 {
                     this.holding.PlaceOnPlanet(instance, point);
+                    UI.Instance.ShowWorldText("+5 xp",point,Color.green);
+                    UI.Instance.ShowWorldText("-" + this.holding.entityData.cost + " money", point, Color.red,1);
                     this.holding = null;
                     this.listener.SignalOnPlace();
                     Destroy(this.radiusSphereInstance);

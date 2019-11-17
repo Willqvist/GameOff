@@ -11,6 +11,7 @@ public class ShopItem : MonoBehaviour
     public TextMeshProUGUI buybuttonText;
     public ShopItemInfo info;
     private bool isBuying = false;
+    private Quaternion telBuyRot;
     ObjectPlacerListener listener;
 
     public void Load(ShopItemData shopItemData)
@@ -20,7 +21,8 @@ public class ShopItem : MonoBehaviour
         this.info.ShowInfo(shopItemData);
         this.buyButton.RegisterOnClickEvent(() =>
         {
-            if(Player.Instance.money < shopItemData.entityData.cost)
+            UI.Instance.ShopItem = shopItemData;
+            if (Player.Instance.money < shopItemData.entityData.cost)
             {
                 //Show some stupid message here
                 return;
@@ -31,22 +33,45 @@ public class ShopItem : MonoBehaviour
                 listener.SignalOnCancel();
                 return;
             }
-            if (ObjectPlacerListener.IsWorking()) return;
-            Debug.Log("buying");
-            listener = ObjectPlacerListener.create();
-            listener.OnCancelListener(OnCancel);
-            listener.OnPlaceListener(OnPlace);
-            Player.Instance.Planet.GetComponent<PlanetObjectPlacer>().PlaceObject(listener,shopItemData.entityData.entityName, () => 
-            {
-                Player.Instance.money -= shopItemData.entityData.cost;
-            });
-            
             buybuttonText.SetText("X Buy");
             isBuying = true;
 
+            if (shopItemData.entityData.name.Equals("Teleporter"))
+            {
+                telBuyRot = UI.Instance.planetCamera.transform.rotation;
+                listener = ObjectPlacerListener.create();
+                listener.OnCancelListener(OnCancelTeleport);
+                listener.OnPlaceListener(OnPlace);
+                UI.Instance.planetCamera.SetState(CameraState.TELEPORT);
+                UI.Instance.planetCamera.PivotTranslate(Player.Instance.Planet.transform.position + new Vector3(0, 300, 0));
+                UI.Instance.planetCamera.PivotTranslateRotation(Quaternion.Euler(90, 0, 0));
+                UI.Instance.planetCamera.DisableRotation(true);
+                UI.Instance.ShowArea(Player.Instance.Planet.transform.position,((TeleporterData)shopItemData.entityData.externalData).radius*2);
+            }
+            else
+            {
+                if (ObjectPlacerListener.IsWorking()) return;
+                Debug.Log("buying");
+                listener = ObjectPlacerListener.create();
+                listener.OnCancelListener(OnCancel);
+                listener.OnPlaceListener(OnPlace);
+                Player.Instance.Planet.GetComponent<PlanetObjectPlacer>().PlaceObject(listener, shopItemData.entityData.entityName, () =>
+                 {
+                     Player.Instance.money -= shopItemData.entityData.cost;
+                 });
+
+            }
         });
     }
-
+    private void OnCancelTeleport()
+    {
+        OnCancel();
+        UI.Instance.HideArea();
+        UI.Instance.planetCamera.PivotTranslate(Player.Instance.Planet.transform.position);
+        UI.Instance.planetCamera.PivotTranslateRotation(telBuyRot);
+        UI.Instance.planetCamera.DisableRotation(false);
+        UI.Instance.planetCamera.SetState(CameraState.PLANET);
+    }
     private void OnCancel()
     {
         isBuying = false;

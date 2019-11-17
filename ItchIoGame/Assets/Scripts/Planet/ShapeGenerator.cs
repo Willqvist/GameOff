@@ -4,27 +4,27 @@ using UnityEngine;
 
 public class ShapeGenerator
 {
-    private ShapeSettings settings;
+    private float radius;
     private NoiseSettings noiseSettings;
     public MinMax elevationMinMax;
     private NoiseFilter noiseFilter;
     private Texture2D texutre;
-    public ShapeGenerator(NoiseSettings noiseSettings,ShapeSettings settings) {
-        this.settings = settings;
+    public ShapeGenerator(NoiseSettings noiseSettings,float radius) {
+        this.radius = radius;
         noiseFilter = new NoiseFilter();
         elevationMinMax = new MinMax();
         this.noiseSettings = noiseSettings;
     }
 
-    public ShapeSettings getSettings()
+    public float GetRadius()
     {
-        return settings;
+        return radius;
     }
     public float getNoise(Vector3 pointOnUnitSphere) {
         return noiseFilter.Evaluate(noiseSettings, pointOnUnitSphere);
     }
     public Vector3 CalculatePointOnPlanet(float noise, Vector3 pointOnUnitSphere) {
-        float elevation = settings.planetRadius * (1 + noise);
+        float elevation = radius * (1 + noise);
         elevationMinMax.addValue(elevation);
         return pointOnUnitSphere * elevation;
     }

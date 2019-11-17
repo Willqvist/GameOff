@@ -8,7 +8,8 @@ public class PanelObjectInfo : Panel
 
     public void Hide()
     {
-        inst.gameObject.SetActive(false);
+        if(inst != null)
+            inst.gameObject.SetActive(false);
     }
 
     public void Show(PlanetEntity entity)

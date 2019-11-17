@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +8,6 @@ public class PlanetGenerator : MonoBehaviour
     [Range(2,256)]
     public int resolution = 10;
 
-    public ShapeSettings shapeSettings;
     public ColorSettings colorSettings;
     public ShapeGenerator shapeGenerator;
     public NoiseSettings noiseSettings;
@@ -16,9 +16,14 @@ public class PlanetGenerator : MonoBehaviour
     private MeshFilter[] meshFilters;
     private MeshCollider[] meshColliders;
     private PlanetFace[] planetFaces;
-
+    private bool loaded = false;
     private ResourceGenerator resourceGenerator;
     private ColorGenerator colorGenerator;
+
+    internal bool Loaded()
+    {
+        return loaded;
+    }
 
     private void OnValidate()
     {
@@ -27,19 +32,20 @@ public class PlanetGenerator : MonoBehaviour
     public NoiseSettings getNoiseSettings() {
         return noiseSettings;
     }
-    private void Start()
+    public void InitPlanet(NoiseSettings noise, float radius)
     {
-        shapeGenerator = new ShapeGenerator(noiseSettings, shapeSettings);
+        shapeGenerator = new ShapeGenerator(noise, radius);
         colorGenerator = new ColorGenerator(colorSettings);
         meshFilters = new MeshFilter[6];
         meshColliders = new MeshCollider[6];
         resourceGenerator = new ResourceGenerator(this.GetComponent<Planet>(), mineType, treeType, noiseSettings);
         planetFaces = new PlanetFace[6];
         GeneratePlanet();
+        loaded = true;
     }
 
-    public ShapeSettings getSettings() {
-        return shapeSettings;
+    public float GetRadius() {
+        return shapeGenerator.GetRadius();
     }
 
     public PlanetGenerator() {

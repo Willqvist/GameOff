@@ -9,6 +9,10 @@ public class Planet : MonoBehaviour
     private List<PlanetEntity> entities;
     private Stack<PlanetEntity> lowElectricityQueue;
     private Stack<PlanetEntity> lowPopulationQueue;
+    public PlanetCamera planetCamera;
+    private static int ids = 0;
+    private int id = -1;
+    private PlanetGenerator generator;
 
     public int activeWorkers;
     public int population;
@@ -16,15 +20,50 @@ public class Planet : MonoBehaviour
     public float electricity;
     public float happiness;
 
+    public int Id => ids;
+
     public void Start()
     {
+        if (id != -1) return;
         this.entities = new List<PlanetEntity>();
         this.lowElectricityQueue = new Stack<PlanetEntity>();
         this.lowPopulationQueue = new Stack<PlanetEntity>();
+        this.generator = this.GetComponent<PlanetGenerator>();
+        id = ids++;
+    }
+
+    public void Initalize(Vector3 position)
+    {
+        if (id == -1)
+        {
+            this.entities = new List<PlanetEntity>();
+            this.lowElectricityQueue = new Stack<PlanetEntity>();
+            this.lowPopulationQueue = new Stack<PlanetEntity>();
+            this.generator = this.GetComponent<PlanetGenerator>();
+            id = ids++;
+        }
+        NoiseSettings settings = new NoiseSettings();
+        settings.baseRoughness = 0.6f;
+        settings.center = position;
+        Debug.Log("Initalize: " + this.generator);
+        generator.InitPlanet(settings,radius);
+        this.gameObject.transform.position = position;
+
+    }
+
+    public void OnEnter()
+    {
+
+    }
+
+    public void OnLeave()
+    {
+        
     }
 
     public void Update()
     {
+        if (!this.generator.Loaded()) return;
         if(this.electricity > 0)
         {
             while(this.lowElectricityQueue.Count > 0)
@@ -69,5 +108,12 @@ public class Planet : MonoBehaviour
     public void QueueEntityForLowPopulationActivation(PlanetEntity entity)
     {
         this.lowPopulationQueue.Push(entity);
+    }
+
+    private void OnMouseDown()
+    {
+        Debug.Log(this);
+        planetCamera.PivotTranslate(this.transform.position);
+        Player.Instance.LoadPlanet(this);
     }
 }

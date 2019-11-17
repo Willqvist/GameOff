@@ -12,6 +12,7 @@ public class EntityData : ScriptableObject
     public float happiness;
     public string description;
     public bool canSell;
+    public ScriptableObject externalData;
 }
 
 public enum EntityName
@@ -22,5 +23,6 @@ public enum EntityName
     [Description("Human")] Human,
     [Description("Vespene")] Vespene,
     [Description("Mine")] Mine,
-    [Description("Flower")] Flower
+    [Description("Flower")] Flower,
+    [Description("Teleporter")] Teleporter
 }

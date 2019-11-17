@@ -31,6 +31,10 @@ public class CameraObjectPicker : MonoBehaviour
                     PanelManager.Get<PanelObjectInfo>().Show(e);
                 }
             }
+            else
+            {
+                PanelManager.Get<PanelObjectInfo>().Hide();
+            }
         }
     }
 }

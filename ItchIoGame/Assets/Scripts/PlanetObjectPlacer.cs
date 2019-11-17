@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 public class PlanetObjectPlacer : IPointerClickHandler
@@ -17,6 +18,7 @@ public class PlanetObjectPlacer : IPointerClickHandler
     private MaterialPropertyBlock property;
     [ColorUsage(true, true)]
     public Color onWaterColor,onLandColor;
+    private UnityAction onPlace;
     public void Start()
     {
         this.instance = this.GetComponent<Planet>();
@@ -70,12 +72,16 @@ public class PlanetObjectPlacer : IPointerClickHandler
 
                             if (Input.GetMouseButton(0))
                             {
+                                Vector3 p = hit.point + this.holding.transform.up * holding.colliderHeight * 0.5f;
                                 this.holding.PlaceOnPlanet(instance, this.holding.transform.position);
                                 Destroy(h.gameObject);
+                                UI.Instance.ShowWorldText("+5 xp", p, new Color(238 / 256f, 130 / 256f, 238 / 256f));
+                                UI.Instance.ShowWorldText("-" + this.holding.entityData.cost + " money", p, Color.red, 1);
                                 this.holding = null;
                                 this.listener.SignalOnPlace();
                                 Destroy(this.radiusSphereInstance);
                                 this.listener.SignalOnPlace();
+                                this.onPlace?.Invoke();
                                 return;
                             }
 
@@ -89,6 +95,11 @@ public class PlanetObjectPlacer : IPointerClickHandler
                     }
 
                     ignorewaterCheck = true;
+                    this.holding.transform.position = hit.point + this.holding.transform.up * holding.colliderHeight * 0.5f;
+                    this.radiusSphereInstance.transform.position = this.holding.transform.position;
+                    this.holding.RotateTowardsPlanet(this.instance);
+                    this.radiusSphereInstance.transform.rotation = this.holding.transform.rotation;
+                    return;
                 }
 
                 this.holding.RotateTowardsPlanet(this.instance);
@@ -128,12 +139,13 @@ public class PlanetObjectPlacer : IPointerClickHandler
                 if (Input.GetMouseButton(0) && !onWater)
                 {
                     this.holding.PlaceOnPlanet(instance, point);
-                    UI.Instance.ShowWorldText("+5 xp",point,Color.green);
+                    UI.Instance.ShowWorldText("+5 xp",point, new Color(238/256f, 130/256f, 238/256f));
                     UI.Instance.ShowWorldText("-" + this.holding.entityData.cost + " money", point, Color.red,1);
                     this.holding = null;
                     this.listener.SignalOnPlace();
                     Destroy(this.radiusSphereInstance);
                     this.listener.SignalOnPlace();
+                    this.onPlace?.Invoke();
                 }
             }
         }
@@ -168,12 +180,13 @@ public class PlanetObjectPlacer : IPointerClickHandler
         
     }
 
-    public void PlaceObject(ObjectPlacerListener listener,EntityName entity)
+    public void PlaceObject(ObjectPlacerListener listener,EntityName entity, UnityAction onPlace)
     {
         this.listener = listener;
         this.listener.OnCancelListener(OnSignalDestroy);
         PlanetEntity e = PrefabData.Instance.GetEntity(entity);
         HoldPlanetEntity(e);
+        this.onPlace = onPlace;
     }
 
     public override void OnClick(ButtonController button)

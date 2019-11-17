@@ -593,7 +593,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3d09bf99c0946640af2c303b6069ec8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  money: 0
+  money: 1000
 --- !u!4 &974707987
 Transform:
   m_ObjectHideFlags: 0
@@ -1596,7 +1596,7 @@ PrefabInstance:
     - target: {fileID: 4813507824556692554, guid: b354a848bbf0b1f4fa628e42030e05d8,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8748223545523574355, guid: b354a848bbf0b1f4fa628e42030e05d8,
         type: 3}
@@ -1701,7 +1701,7 @@ PrefabInstance:
     - target: {fileID: 5275963829941743418, guid: b354a848bbf0b1f4fa628e42030e05d8,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4621691042216284509, guid: b354a848bbf0b1f4fa628e42030e05d8,
         type: 3}
@@ -1758,6 +1758,11 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6004993895782676042, guid: b354a848bbf0b1f4fa628e42030e05d8,
+        type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 963194227}
     m_RemovedComponents:
     - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: b354a848bbf0b1f4fa628e42030e05d8, type: 3}

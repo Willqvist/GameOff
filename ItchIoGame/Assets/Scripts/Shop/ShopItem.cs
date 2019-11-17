@@ -36,8 +36,11 @@ public class ShopItem : MonoBehaviour
             listener = ObjectPlacerListener.create();
             listener.OnCancelListener(OnCancel);
             listener.OnPlaceListener(OnPlace);
-            Player.Instance.Planet.GetComponent<PlanetObjectPlacer>().PlaceObject(listener,shopItemData.entityData.entityName);
-            Player.Instance.money -= shopItemData.entityData.cost;
+            Player.Instance.Planet.GetComponent<PlanetObjectPlacer>().PlaceObject(listener,shopItemData.entityData.entityName, () => 
+            {
+                Player.Instance.money -= shopItemData.entityData.cost;
+            });
+            
             buybuttonText.SetText("X Buy");
             isBuying = true;
 

@@ -5,6 +5,12 @@ using UnityEngine;
 public class PanelObjectInfo : Panel
 {
     private ObjectPanelComponent inst;
+
+    public void Hide()
+    {
+        inst.gameObject.SetActive(false);
+    }
+
     public void Show(PlanetEntity entity)
     {
         if (inst == null)

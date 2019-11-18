@@ -243,14 +243,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   planets:
   - {fileID: 1842397957}
-  gridSize: {x: 126, y: 126}
-  planetCamera: {fileID: 963194229}
-  renderDist: 8
-  planetPrefab: {fileID: 5731796371422536546, guid: 38199ad6591ea014e93bef5e15460939,
-    type: 3}
-  planetPrefabHolder: {fileID: 8498489485032959599, guid: 31efbeb316693114fb82cfda11596fb8,
-    type: 3}
-  heightSeed: 564534
+  gridSize: {x: 0, y: 0}
+  planetCamera: {fileID: 0}
+  renderDist: 0
+  planetPrefab: {fileID: 0}
+  planetPrefabHolder: {fileID: 0}
+  heightSeed: 0
   spreadSeed: 0
 --- !u!1 &644906518
 GameObject:
@@ -1472,15 +1470,40 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4813507824556692554, guid: b354a848bbf0b1f4fa628e42030e05d8,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6425525285382225851, guid: b354a848bbf0b1f4fa628e42030e05d8,
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2957518638903461813, guid: b354a848bbf0b1f4fa628e42030e05d8,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2957518638903461813, guid: b354a848bbf0b1f4fa628e42030e05d8,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2957518638903461813, guid: b354a848bbf0b1f4fa628e42030e05d8,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2957518638903461813, guid: b354a848bbf0b1f4fa628e42030e05d8,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2957518638903461813, guid: b354a848bbf0b1f4fa628e42030e05d8,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4813507824556692554, guid: b354a848bbf0b1f4fa628e42030e05d8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8748223545523574355, guid: b354a848bbf0b1f4fa628e42030e05d8,
         type: 3}
@@ -1578,31 +1601,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1270899087096338215, guid: b354a848bbf0b1f4fa628e42030e05d8,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2957518638903461813, guid: b354a848bbf0b1f4fa628e42030e05d8,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2957518638903461813, guid: b354a848bbf0b1f4fa628e42030e05d8,
-        type: 3}
-      propertyPath: m_textInfo.spaceCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2957518638903461813, guid: b354a848bbf0b1f4fa628e42030e05d8,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2957518638903461813, guid: b354a848bbf0b1f4fa628e42030e05d8,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2957518638903461813, guid: b354a848bbf0b1f4fa628e42030e05d8,
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 0
@@ -1708,6 +1706,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Planet
       objectReference: {fileID: 0}
+    - target: {fileID: 5731796371422536546, guid: 38199ad6591ea014e93bef5e15460939,
+        type: 3}
+      propertyPath: planetCamera
+      value: 
+      objectReference: {fileID: 963194229}
+    - target: {fileID: 5731796371422536544, guid: 38199ad6591ea014e93bef5e15460939,
+        type: 3}
+      propertyPath: isTutorialWorld
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5731796371422536547, guid: 38199ad6591ea014e93bef5e15460939,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1763,11 +1771,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5731796371422536546, guid: 38199ad6591ea014e93bef5e15460939,
-        type: 3}
-      propertyPath: planetCamera
-      value: 
-      objectReference: {fileID: 963194229}
     - target: {fileID: 5731796371422536545, guid: 38199ad6591ea014e93bef5e15460939,
         type: 3}
       propertyPath: mainCamera

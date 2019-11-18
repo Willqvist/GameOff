@@ -12,6 +12,7 @@ public class PlanetEntity : MonoBehaviour
     private int activeWorkers;
     private bool hasPlaced;
     public bool isRunning = true;
+    private bool isEnvironmental;
 
     public bool HasPlaced => hasPlaced;
     public int ActiveWorkers => activeWorkers;
@@ -33,6 +34,8 @@ public class PlanetEntity : MonoBehaviour
         this.planet = planet;
         this.transform.position = position;
         this.activeWorkers = (planet.population - planet.activeWorkers) >= this.entityData.activeWorkersRequirement ? this.entityData.activeWorkersRequirement : (planet.population - planet.activeWorkers);
+
+        this.isEnvironmental = this.entityData.activeWorkersRequirement <= 0;
 
         planet.activeWorkers += this.activeWorkers;
 
@@ -66,6 +69,8 @@ public class PlanetEntity : MonoBehaviour
         }
 
         planet.happiness += this.entityData.happiness;
+
+        this.StartCoroutine(GenerateMoney());
     }
 
     public void StartRunning()
@@ -116,11 +121,23 @@ public class PlanetEntity : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
 
-        if((pollution > 0 || Player.Instance.Planet.pollution > 0) && this.isRunning && this.activeWorkers > 0)
+        if (((this.isRunning && this.activeWorkers > 0) || this.isEnvironmental) && (Player.Instance.Planet.pollution > 0 || this.entityData.pollution > 0))
         {
             this.planet.Pollute(pollution);
         }
         
         this.StartCoroutine(this.Pollute(this.entityData.pollution));
+    }
+
+    private IEnumerator GenerateMoney()
+    {
+        yield return new WaitForSeconds(2);
+
+        if ((this.isRunning && this.activeWorkers > 0))
+        {
+            Player.Instance.money += this.entityData.income;
+        }
+
+        this.StartCoroutine(GenerateMoney());
     }
 }

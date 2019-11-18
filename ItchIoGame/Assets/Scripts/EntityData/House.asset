@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: House
   m_EditorClassIdentifier: Assembly-CSharp::FEntityData
   entityName: 0
-  cost: 100
+  cost: 1000
   activeWorkersRequirement: 0
   populationIncrease: 10
   pollution: 0
-  electricity: -1
+  electricity: 0
   happiness: 0
   description: Provides a warm new house for the population on the planet
   canSell: 1
+  externalData: {fileID: 0}

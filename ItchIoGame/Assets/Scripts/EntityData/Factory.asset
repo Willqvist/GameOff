@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Factory
   m_EditorClassIdentifier: 
   entityName: 2
-  cost: 50
+  cost: 1500
   activeWorkersRequirement: 5
   populationIncrease: 0
   pollution: 2
@@ -21,3 +21,4 @@ MonoBehaviour:
   happiness: -5
   description: Factory gathers resources from the planet
   canSell: 1
+  externalData: {fileID: 0}

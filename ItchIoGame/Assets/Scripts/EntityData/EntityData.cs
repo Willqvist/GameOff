@@ -12,6 +12,7 @@ public class EntityData : ScriptableObject
     public float happiness;
     public string description;
     public bool canSell;
+    public float income;
     public ScriptableObject externalData;
 }
 

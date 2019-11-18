@@ -96,10 +96,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 5
   gravity: -15
+  planetCamera: {fileID: 0}
   activeWorkers: 0
-  population: 10
+  population: 0
   pollution: 0
-  electricity: 20
+  electricity: 0
   happiness: 0
 --- !u!114 &5731796371422536545
 MonoBehaviour:

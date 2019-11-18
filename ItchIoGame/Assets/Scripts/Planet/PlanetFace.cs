@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlanetFace
 {
+    private Planet context;
     private Mesh mesh;
     private MeshCollider collider;
     private int resolution;
@@ -12,9 +13,11 @@ public class PlanetFace
     private Vector3 axisA;
     private Vector3 axisB;
     private ResourceGenerator rg;
+    private bool isTutorialWorld;
     // Start is called before the first frame update
 
-    public PlanetFace(ResourceGenerator rg, ShapeGenerator shapeGenerator, Mesh mesh,MeshCollider collider, int resolution, Vector3 localUp) {
+    public PlanetFace(Planet planet, ResourceGenerator rg, ShapeGenerator shapeGenerator, Mesh mesh,MeshCollider collider, int resolution, Vector3 localUp, bool isTutorialWorld) {
+        this.context = planet;
         this.shapeGenerator = shapeGenerator;
         this.mesh = mesh;
         this.resolution = resolution;
@@ -23,6 +26,7 @@ public class PlanetFace
         this.axisB = Vector3.Cross(localUp, axisA);
         this.collider = collider;
         this.rg = rg;
+        this.isTutorialWorld = isTutorialWorld;
     }
     private Vector3 min = new Vector3(-0.1f, -0.1f, -0.1f);
     public void ConstructMesh() {
@@ -41,12 +45,16 @@ public class PlanetFace
                 float noise = shapeGenerator.getNoise(pointOnUnitSphere);
                 vertices[i] = shapeGenerator.CalculatePointOnPlanet(noise,pointOnUnitSphere);
 
-                if (rg.ShouldPlaceTree(vertices[i]) && noise > 0.001f && x % 3 == 0 && y % 3 == 0)
+                if(!isTutorialWorld)
                 {
-                    rg.PlaceTree(vertices[i] - min);
-                }
-                else if(rg.ShouldPlaceMine(vertices[i]) && noise > 0.001f && x % 7 == 0 && y % 7 == 0) {
-                    rg.PlaceMine(vertices[i]);
+                    if (rg.ShouldPlaceTree(vertices[i]) && noise > 0.001f && x % 3 == 0 && y % 3 == 0)
+                    {
+                        rg.PlaceTree(vertices[i] - min);
+                    }
+                    else if (rg.ShouldPlaceMine(vertices[i]) && noise > 0.001f && x % 7 == 0 && y % 7 == 0)
+                    {
+                        rg.PlaceMine(vertices[i]);
+                    }
                 }
 
                 if (x != resolution - 1 && y != resolution - 1) {

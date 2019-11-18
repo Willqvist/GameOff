@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Tree
   m_EditorClassIdentifier: Assembly-CSharp::FEntityData
   entityName: 1
-  cost: 10
+  cost: 480
   activeWorkersRequirement: 0
   populationIncrease: 0
   pollution: -0.01
@@ -21,3 +21,4 @@ MonoBehaviour:
   happiness: 0
   description: A Tree sucking out all the bad pollution from the air.
   canSell: 1
+  externalData: {fileID: 0}

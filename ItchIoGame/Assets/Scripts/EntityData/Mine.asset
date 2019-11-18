@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Mine
   m_EditorClassIdentifier: 
   entityName: 5
-  cost: 50
+  cost: 1000
   activeWorkersRequirement: 5
   populationIncrease: 0
   pollution: 1
@@ -21,3 +21,5 @@ MonoBehaviour:
   happiness: -5
   description: Mine will gather materials from geisers spread about the planet
   canSell: 1
+  income: 30
+  externalData: {fileID: 0}

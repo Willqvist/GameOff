@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Flower
   m_EditorClassIdentifier: 
   entityName: 6
-  cost: 0
+  cost: 100
   activeWorkersRequirement: 0
   populationIncrease: 0
   pollution: -0.001
@@ -21,3 +21,4 @@ MonoBehaviour:
   happiness: 5
   description: Regular old flower
   canSell: 1
+  externalData: {fileID: 0}

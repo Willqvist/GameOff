@@ -19,6 +19,7 @@ public class PlanetGenerator : MonoBehaviour
     private bool loaded = false;
     private ResourceGenerator resourceGenerator;
     private ColorGenerator colorGenerator;
+    public bool isTutorialWorld;
 
     internal bool Loaded()
     {
@@ -77,12 +78,19 @@ public class PlanetGenerator : MonoBehaviour
             meshColliders[i] = meshObj.AddComponent<MeshCollider>();
             meshFilters[i].GetComponent<MeshRenderer>().sharedMaterial = colorSettings.planetMaterial;
             planetFaces[i] = new PlanetFace(
+                this.GetComponent<Planet>(),
                 resourceGenerator,
                 shapeGenerator,
                 meshFilters[i].sharedMesh, 
                 meshColliders[i],
                 resolution, 
-                directions[i]);
+                directions[i],
+                this.isTutorialWorld);
+        }
+
+        if (isTutorialWorld)
+        {
+            this.resourceGenerator.PlaceMine(new Vector3(0, this.GetComponent<Planet>().radius, 0));
         }
     }
 

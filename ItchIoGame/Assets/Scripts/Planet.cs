@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Planet : MonoBehaviour
 {
-    [SerializeField] private float radius;
+    [SerializeField] public float radius;
     [SerializeField] public float gravity = -12;
     private List<PlanetEntity> entities;
     private Stack<PlanetEntity> lowElectricityQueue;
@@ -69,7 +69,11 @@ public class Planet : MonoBehaviour
             while(this.lowElectricityQueue.Count > 0)
             {
                 PlanetEntity e = this.lowElectricityQueue.Pop();
-                e.StartRunning();
+
+                if(!this.lowPopulationQueue.Contains(e))
+                {
+                    e.StartRunning();
+                }
             }
         }
 
@@ -80,7 +84,11 @@ public class Planet : MonoBehaviour
                 PlanetEntity e = this.lowPopulationQueue.Pop();
                 e.AddWorkers(this.population - this.activeWorkers >= e.entityData.activeWorkersRequirement ? e.entityData.activeWorkersRequirement : this.population - this.activeWorkers);
                 this.activeWorkers += e.ActiveWorkers;
-                e.StartRunning();
+
+                if (!this.lowElectricityQueue.Contains(e))
+                {
+                    e.StartRunning();
+                }
             }
         }
     }

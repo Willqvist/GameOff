@@ -47,7 +47,7 @@ public class PlanetFace
 
                 if(!isTutorialWorld)
                 {
-                    if (rg.ShouldPlaceTree(vertices[i]) && noise > 0.001f && x % 3 == 0 && y % 3 == 0)
+                    if (rg.ShouldPlaceTree(vertices[i]) && noise > 0.001f && x % 3 == 0 && y % 3 == 0 && this.context.PType().planetName == PlanetName.Normal)
                     {
                         rg.PlaceTree(vertices[i] - min);
                     }

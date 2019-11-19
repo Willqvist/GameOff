@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,11 +13,21 @@ public class PlanetLoader : MonoBehaviour
     [SerializeField] private GameObject planetPrefabHolder;
     [SerializeField] private int heightSeed;
     [SerializeField] private int spreadSeed;
+
+    [SerializeField] private List<PlanetType> planetSettings;
+    private static List<PlanetType> planetSettingsStat;
+
     private Planet currentPlanet;
     private void Start()
     {
+        planetSettingsStat = planetSettings;
         Player.Instance.LoadPlanet(planets[0]);
-        planets[0].Initalize(new Vector3(0,0,0));
+        planets[0].Initalize(new Vector3(0,0,0), GetType(PlanetName.Normal));
+    }
+
+    public static PlanetType GetType(PlanetName name)
+    {
+        return planetSettingsStat.Find((p) => p.planetName == name);
     }
 
     private void Update()
@@ -68,11 +79,18 @@ public class PlanetLoader : MonoBehaviour
     private void NewPlanet(Vector2 grid)
     {
         GameObject holder = Instantiate(planetPrefabHolder);
+        holder.transform.SetParent(this.gameObject.transform);
         Planet planet = Instantiate(planetPrefab);
+        planet.transform.SetParent(this.gameObject.transform);
         holder.transform.position = ToWorldPosition(grid);
         holder.GetComponent<PlanetHolder>().planet = planet;
         holder.GetComponent<PlanetHolder>().planetCamera = planetCamera;
         planet.gameObject.SetActive(false);
+    }
+
+    public void GetSetting()
+    {
+
     }
 
     private Vector2 ToGrid(Vector3 position)

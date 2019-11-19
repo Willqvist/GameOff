@@ -13,7 +13,7 @@ public class Planet : MonoBehaviour
     private static int ids = 0;
     private int id = -1;
     private PlanetGenerator generator;
-
+    private PlanetType type;
     public int activeWorkers;
     public int population;
     public float pollution;
@@ -21,6 +21,11 @@ public class Planet : MonoBehaviour
     public float happiness;
 
     public int Id => ids;
+
+    public PlanetType PType()
+    {
+        return type;
+    }
 
     public void Start()
     {
@@ -32,7 +37,7 @@ public class Planet : MonoBehaviour
         id = ids++;
     }
 
-    public void Initalize(Vector3 position)
+    public void Initalize(Vector3 position,PlanetType type)
     {
         if (id == -1)
         {
@@ -42,13 +47,26 @@ public class Planet : MonoBehaviour
             this.generator = this.GetComponent<PlanetGenerator>();
             id = ids++;
         }
-        NoiseSettings settings = new NoiseSettings();
+        this.type = type;
+        NoiseSettings settings = GenerateSettings(type,position);
+        /*
         settings.baseRoughness = 0.6f;
         settings.center = position;
-        Debug.Log("Initalize: " + this.generator);
-        generator.InitPlanet(settings,radius);
+        */
+        generator.InitPlanet(type,settings, radius);
         this.gameObject.transform.position = position;
 
+    }
+
+    private NoiseSettings GenerateSettings(PlanetType type, Vector3 center)
+    {
+        NoiseSettings settings = new NoiseSettings();
+        settings.baseRoughness = Random.Range(type.baseRoughnessScale.x, type.baseRoughnessScale.y);
+        settings.numLayers = Random.Range(type.numLayersRange.x, type.numLayersRange.y);
+        settings.strength = Random.Range(type.strengthRange.x, type.strengthRange.y);
+        settings.persistance = Random.Range(type.persistanceRange.x, type.persistanceRange.y);
+        settings.center = center;
+        return settings;
     }
 
     public void OnEnter()

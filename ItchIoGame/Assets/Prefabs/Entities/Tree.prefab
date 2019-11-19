@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entityData: {fileID: 11400000, guid: 9b54e3637832327409b91f07aa6930bd, type: 2}
-  colliderHeight: -0.1
+  colliderHeight: -0.3
   sphereRadius: 0.8
   isRunning: 1
 --- !u!1001 &2821135336532042530
@@ -70,11 +70,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 277650986377186417}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: a98d2072f9d5f7b44a498bfe5a20cc31,
-        type: 3}
-      propertyPath: m_Name
-      value: tree
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: a98d2072f9d5f7b44a498bfe5a20cc31,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -129,6 +124,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: a98d2072f9d5f7b44a498bfe5a20cc31,
+        type: 3}
+      propertyPath: m_Name
+      value: tree
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a98d2072f9d5f7b44a498bfe5a20cc31, type: 3}

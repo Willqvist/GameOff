@@ -21,7 +21,6 @@ public class ShopItem : MonoBehaviour
         this.info.ShowInfo(shopItemData);
         this.buyButton.RegisterOnClickEvent(() =>
         {
-            UI.Instance.ShopItem = shopItemData;
             if (Player.Instance.money < shopItemData.entityData.cost)
             {
                 //Show some stupid message here
@@ -33,8 +32,10 @@ public class ShopItem : MonoBehaviour
                 listener.SignalOnCancel();
                 return;
             }
+            if (ObjectPlacerListener.IsWorking()) return;
             buybuttonText.SetText("X Buy");
             isBuying = true;
+            UI.Instance.ShopItem = shopItemData;
 
             if (shopItemData.entityData.name.Equals("Teleporter"))
             {
@@ -50,8 +51,6 @@ public class ShopItem : MonoBehaviour
             }
             else
             {
-                if (ObjectPlacerListener.IsWorking()) return;
-                Debug.Log("buying");
                 listener = ObjectPlacerListener.create();
                 listener.OnCancelListener(OnCancel);
                 listener.OnPlaceListener(OnPlace);
@@ -62,6 +61,15 @@ public class ShopItem : MonoBehaviour
 
             }
         });
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.Escape) && UI.Instance.planetCamera.GetState() == CameraState.TELEPORT)
+        {
+            listener.SignalOnCancel();
+            return;
+        }
     }
     private void OnCancelTeleport()
     {

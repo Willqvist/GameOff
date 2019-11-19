@@ -20,7 +20,7 @@ public class PlanetGenerator : MonoBehaviour
     private ResourceGenerator resourceGenerator;
     private ColorGenerator colorGenerator;
     public bool isTutorialWorld;
-
+    private PlanetType type;
     internal bool Loaded()
     {
         return loaded;
@@ -33,7 +33,7 @@ public class PlanetGenerator : MonoBehaviour
     public NoiseSettings getNoiseSettings() {
         return noiseSettings;
     }
-    public void InitPlanet(NoiseSettings noise, float radius)
+    public void InitPlanet(PlanetType type, NoiseSettings noise, float radius)
     {
         shapeGenerator = new ShapeGenerator(noise, radius);
         colorGenerator = new ColorGenerator(colorSettings);
@@ -41,6 +41,7 @@ public class PlanetGenerator : MonoBehaviour
         meshColliders = new MeshCollider[6];
         resourceGenerator = new ResourceGenerator(this.GetComponent<Planet>(), mineType, treeType, noiseSettings);
         planetFaces = new PlanetFace[6];
+        this.type = type;
         GeneratePlanet();
         loaded = true;
     }
@@ -77,6 +78,7 @@ public class PlanetGenerator : MonoBehaviour
             meshFilters[i].sharedMesh = new Mesh();
             meshColliders[i] = meshObj.AddComponent<MeshCollider>();
             meshFilters[i].GetComponent<MeshRenderer>().sharedMaterial = colorSettings.planetMaterial;
+            meshFilters[i].GetComponent<MeshRenderer>().material.SetTexture("_texture", type.planetTexture);
             planetFaces[i] = new PlanetFace(
                 this.GetComponent<Planet>(),
                 resourceGenerator,

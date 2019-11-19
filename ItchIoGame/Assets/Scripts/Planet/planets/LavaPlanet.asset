@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55d735a05d512394db7b956a80e9c7e2, type: 3}
+  m_Name: LavaPlanet
+  m_EditorClassIdentifier: 
+  planetName: 1
+  planetTexture: {fileID: 2800000, guid: 3b3ffbea6349e61439f886d4cf14834d, type: 3}
+  radiusScale: {x: 5, y: 12}
+  baseRoughnessScale: {x: 0.4, y: 0.75}
+  numLayersRange: {x: 3, y: 4}
+  strengthRange: {x: 0.14, y: 0.2}
+  persistanceRange: {x: 0.5, y: 0.55}

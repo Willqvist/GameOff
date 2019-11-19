@@ -50,11 +50,12 @@ public class PlanetHolder : MonoBehaviour
             //TODO: create teleport between current planet and this.planet.
         }
         if (UI.Instance.planetCamera.GetState() != CameraState.PLANET) return;
-        //planet.planetCamera = planetCamera;
-        //planet.Initalize(this.transform.position);
+        planet.planetCamera = planetCamera;
+        planet.gameObject.SetActive(true);
+        planet.Initalize(this.transform.position, PlanetLoader.GetType(Random.value > 0.5 ? PlanetName.Normal : PlanetName.Lava));
         planetCamera.PivotTranslate(this.transform.position);
-        //Player.Instance.LoadPlanet(planet);
-        //Destroy(this.gameObject);
-        //planet.gameObject.SetActive(true);
+        Player.Instance.LoadPlanet(planet);
+        Destroy(this.gameObject);
+        planet.gameObject.SetActive(true);
     }
 }

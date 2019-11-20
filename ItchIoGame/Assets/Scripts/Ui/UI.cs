@@ -12,9 +12,13 @@ public class UI : MonoBehaviour
     public PlanetCamera planetCamera;
     public GameObject area;
     [SerializeField] private LineRenderer lineRenderer;
+    //[SerializeField] private LineRenderer teleportLineRenderer;
+    [SerializeField] private GameObject teleportPrefab;
     public void Awake()
     {
         Instance = this;
+        //teleportLineRenderer.positionCount += 1;
+        //teleportLineRenderer.SetPosition(0, new Vector3(0,0,0));
     }
 
 
@@ -41,6 +45,17 @@ public class UI : MonoBehaviour
         lineRenderer.positionCount = 2;
         lineRenderer.SetPosition(0, p1);
         lineRenderer.SetPosition(1, p2);
+    }
+    public void DrawTeleportLine(Vector3 p1, Vector3 p2) {
+
+        float distance = Vector3.Distance(p1,p2)/2;
+        GameObject teleport = Instantiate(teleportPrefab);
+        teleport.transform.localScale = new Vector3(1, distance, 1);
+        teleport.transform.position = p1 + distance*Vector3.Normalize(p2 - p1);
+        teleport.transform.up = p2 - p1;//(p2,Vector3.up);
+
+        //teleportLineRenderer.positionCount += 1;
+        //teleportLineRenderer.SetPosition(teleportLineRenderer.positionCount-1, p2);
     }
 
     public void ClearLines()

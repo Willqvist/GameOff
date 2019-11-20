@@ -55,7 +55,6 @@ public class ButtonController : MonoBehaviour, IPointerEnterHandler, IPointerExi
         {
             Awake();
         }
-        Debug.Log(this.gameObject.name + " | " + this.button);
         this.button.onClick.AddListener(action);
     }
 

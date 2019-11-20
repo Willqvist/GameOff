@@ -33,7 +33,6 @@ public class PlanetCamera : MonoBehaviour
         if (!atRotPivtort)
         {
             pivot.transform.rotation = Quaternion.Lerp(pivot.transform.rotation, translateRot, 0.05f);
-            Debug.Log(Vector3.Distance(pivot.transform.rotation.eulerAngles, translateRot.eulerAngles));
             if (Vector3.Distance(pivot.transform.rotation.eulerAngles, translateRot.eulerAngles) < 0.02f)
             {
                 pivot.transform.rotation = translateRot;

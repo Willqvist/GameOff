@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class PlanetObjectPlacer : IPointerClickHandler
 {
-    [SerializeField] private Camera mainCamera;
+    [SerializeField] public Camera mainCamera;
     public PlanetEntity holding;
     private Planet instance;
     public GameObject radiusSpherePrefab;

@@ -9,10 +9,23 @@ public class PlanetInformation : MonoBehaviour
     public TextMeshProUGUI pollution;
     public TextMeshProUGUI electricity;
     public TextMeshProUGUI happiness;
+    public TextMeshProUGUI title;
     private int pollutionMultiplier = 10;
 
-    private void Update()
+    private static PlanetInformation info;
+
+    public void Awake()
     {
+        info = this;
+    }
+
+    public static void updateText() {
+        info.updateNewPlanet();
+    }
+
+    private void updateNewPlanet()
+    {
+        this.title.text = Player.Instance.Planet.title;
         this.population.text = $"{Player.Instance.Planet.activeWorkers} / {Player.Instance.Planet.population}";
         string s = "Calm";
         int i = 0;

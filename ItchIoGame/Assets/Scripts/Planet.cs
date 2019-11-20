@@ -14,11 +14,13 @@ public class Planet : MonoBehaviour
     private int id = -1;
     private PlanetGenerator generator;
     private PlanetType type;
+    public Vector3 position = new Vector3(0,0,0);
     public int activeWorkers;
     public int population;
     public float pollution;
     public float electricity;
     public float happiness;
+    public string title;
 
     public int Id => ids;
 
@@ -26,6 +28,8 @@ public class Planet : MonoBehaviour
     {
         return type;
     }
+
+
 
     public void Start()
     {

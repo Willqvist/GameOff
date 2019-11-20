@@ -12,7 +12,7 @@ public class ShopItem : MonoBehaviour
     public ShopItemInfo info;
     private bool isBuying = false;
     private Quaternion telBuyRot;
-    ObjectPlacerListener listener;
+    public static ObjectPlacerListener listener;
 
     public void Load(ShopItemData shopItemData)
     {
@@ -42,7 +42,7 @@ public class ShopItem : MonoBehaviour
                 telBuyRot = UI.Instance.planetCamera.transform.rotation;
                 listener = ObjectPlacerListener.create();
                 listener.OnCancelListener(OnCancelTeleport);
-                listener.OnPlaceListener(OnPlace);
+                listener.OnPlaceListener(OnTeleportPlace);
                 UI.Instance.planetCamera.SetState(CameraState.TELEPORT);
                 UI.Instance.planetCamera.PivotTranslate(Player.Instance.Planet.transform.position + new Vector3(0, 300, 0));
                 UI.Instance.planetCamera.PivotTranslateRotation(Quaternion.Euler(90, 0, 0));
@@ -92,5 +92,13 @@ public class ShopItem : MonoBehaviour
     private void OnPlace()
     {
         OnCancel();
+    }
+
+    private void OnTeleportPlace()
+    {
+        Player.Instance.money -= UI.Instance.ShopItem.entityData.cost;
+        UI.Instance.ShowWorldText("-"+ UI.Instance.ShopItem.entityData.cost+" money",Player.Instance.Planet.position,Color.red,0);
+        UI.Instance.ShowWorldText("+ 50 exp", Player.Instance.Planet.position, new Color(238 / 256f, 130 / 256f, 238 / 256f), 1);
+        OnCancelTeleport();
     }
 }

@@ -54,13 +54,11 @@ public class PlanetLoader : MonoBehaviour
     private void LoadSurroundingPlanets(Planet newPlanet)
     {
         Vector2 grid = ToGrid(newPlanet.transform.position);
-        Debug.Log(grid);
         for (int i = -renderDist; i < renderDist; i++)
         {
             for (int j = -renderDist; j < renderDist; j++)
             {
                 Vector2 newGrid = grid + new Vector2(i, j);
-                Debug.Log(newGrid);
                 if (!IsGridOccupied(newGrid))
                 {
                     NewPlanet(newGrid);
@@ -76,6 +74,7 @@ public class PlanetLoader : MonoBehaviour
         return new Vector3(gridPos.x+Mathf.Cos(angle)*gridSize.x/4, Mathf.PerlinNoise((grid.x+heightSeed)*0.6f, (grid.y + heightSeed) * 0.6f) *100, gridPos.y + Mathf.Sin(angle) * gridSize.y / 4);
     }
 
+
     private void NewPlanet(Vector2 grid)
     {
         GameObject holder = Instantiate(planetPrefabHolder);
@@ -86,6 +85,7 @@ public class PlanetLoader : MonoBehaviour
         holder.GetComponent<PlanetHolder>().planet = planet;
         holder.GetComponent<PlanetHolder>().planetCamera = planetCamera;
         planet.gameObject.SetActive(false);
+        planet.title = "Planet " + (char)(UnityEngine.Random.Range('A','Z')) + "-" + (UnityEngine.Random.Range(1, 13337));
     }
 
     public void GetSetting()

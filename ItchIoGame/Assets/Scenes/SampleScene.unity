@@ -254,6 +254,7 @@ MonoBehaviour:
   spreadSeed: 5456467
   planetSettings:
   - {fileID: 11400000, guid: 9280609ff06862443939ebb8a60a2c01, type: 2}
+  - {fileID: 11400000, guid: a0e94daf757954c4ca660f991e0628b4, type: 2}
 --- !u!1 &459087679
 GameObject:
   m_ObjectHideFlags: 0
@@ -765,6 +766,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1268322461 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4339704362449086123, guid: b354a848bbf0b1f4fa628e42030e05d8,
+    type: 3}
+  m_PrefabInstance: {fileID: 4339704362351158372}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1503507580
 GameObject:
   m_ObjectHideFlags: 0
@@ -1814,6 +1827,23 @@ PrefabInstance:
       propertyPath: lineRenderer
       value: 
       objectReference: {fileID: 459087680}
+    - target: {fileID: 6004993895782676042, guid: b354a848bbf0b1f4fa628e42030e05d8,
+        type: 3}
+      propertyPath: teleportLineRenderer
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6004993895782676042, guid: b354a848bbf0b1f4fa628e42030e05d8,
+        type: 3}
+      propertyPath: telleportPrefab
+      value: 
+      objectReference: {fileID: 3258702486307146486, guid: 2eac704ee819f3e4880eea167bc686ab,
+        type: 3}
+    - target: {fileID: 6004993895782676042, guid: b354a848bbf0b1f4fa628e42030e05d8,
+        type: 3}
+      propertyPath: teleportPrefab
+      value: 
+      objectReference: {fileID: 3258702486307146486, guid: 2eac704ee819f3e4880eea167bc686ab,
+        type: 3}
     - target: {fileID: 4339704362351158375, guid: b354a848bbf0b1f4fa628e42030e05d8,
         type: 3}
       propertyPath: shopItems.Array.size
@@ -1825,6 +1855,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: f0c92d35527f32240b3154b1903ce023,
         type: 2}
+    - target: {fileID: 7084672980261888754, guid: b354a848bbf0b1f4fa628e42030e05d8,
+        type: 3}
+      propertyPath: title
+      value: 
+      objectReference: {fileID: 1268322461}
     m_RemovedComponents:
     - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: b354a848bbf0b1f4fa628e42030e05d8, type: 3}
@@ -1845,6 +1880,11 @@ PrefabInstance:
       propertyPath: planetCamera
       value: 
       objectReference: {fileID: 963194229}
+    - target: {fileID: 5731796371422536546, guid: 38199ad6591ea014e93bef5e15460939,
+        type: 3}
+      propertyPath: title
+      value: Planet A - 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 5731796371422536544, guid: 38199ad6591ea014e93bef5e15460939,
         type: 3}
       propertyPath: isTutorialWorld
